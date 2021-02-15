@@ -22,6 +22,7 @@
 
 ##  Лекція 2. Симплекс
 - 2021-01-12.
+[Відео](https://www.youtube.com/watch?v=Plqci0HNgvo)
 [Конспект](./pl_topology/lecture_2.pdf)
 - **Def. Правильно розміщені симплекси**. Нехай $\bar{A}$, $\bar{B}$ $\subset \mathbb{R}^{n}$ – два симплекси. Тоді вони є **правильно розміщеними**, якщо:
   - або $\bar{A} \cap \bar{B}=\varnothing$

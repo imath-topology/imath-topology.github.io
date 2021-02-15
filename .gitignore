@@ -2,11 +2,14 @@
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
+*.bak
+*.fls
 *.lof
 *.log
 *.lot
 *.fls
 *.out
+*.sav
 *.toc
 *.fmt
 *.fot

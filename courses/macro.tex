@@ -1,0 +1,734 @@
+%\begin{enumerate}[leftmargin=*, label={\rm(\arabic*)}]
+%\item
+%\end{enumerate}
+%
+%\begin{enumerate}[leftmargin=*, itemindent=\parindent, label={\rm(\arabic*)}]
+%\item
+%\end{enumerate}
+%
+%\begin{enumerate}[leftmargin=*, label={\rm(\alph*)}]
+%\item
+%\end{enumerate}
+%
+%\begin{enumerate}[leftmargin=*, label={\rm(\roman*)}]
+%\item
+%\end{enumerate}
+
+%\begin{align}\label{equ:}
+%\end{align}
+%
+%\begin{align*}
+%\end{align*}
+%
+%\begin{gather}\label{equ:}
+%\end{gather}
+%
+%\begin{gather*}
+%\end{gather*}
+
+%\begin{multline*}
+%\end{multline*}
+
+%\begin{multline}
+%\end{multline}
+
+%\begin{equation}\label{equ:}
+%\end{equation}
+
+%\begin{equation*}
+%\end{equation*}
+
+% \newcounter{zzzc}
+% \renewcommand\thezzzc{\arabic{zzzc}}
+% \newcommand\mysection[1]{\par\noindent\refstepcounter{zzzc}\textsc{\thezzzc.~#1.}~}
+
+
+% \renewcommand\thesection{\arabic{section}}
+% \newcounter{zzza}
+% \renewcommand\thezzza{\arabic{zzza}}
+% \newcommand\mysection[1]{
+% 	\bigskip\medskip\par\noindent
+% 	\refstepcounter{zzza}\textbf{\Large\thezzza.~~#1}
+% 	\medskip\par\protect\noindent
+% }
+
+
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm}
+\usepackage{amscd}
+\usepackage{enumitem}
+\usepackage[all]{xy}
+
+\usepackage{hyperref}
+%\hypersetup{hidelinks=true, hypertexnames=false}
+\hypersetup{
+    hypertexnames=false,
+    colorlinks,
+    linkcolor={red!30!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+
+
+
+% \newtheorem{theorem}[subsection]{Theorem}
+% \newtheorem{lemma}[subsection]{Lemma}
+% \newtheorem{sublemma}[subsubsection]{Lemma}
+% \newtheorem{proposition}[subsection]{Proposition}
+% \newtheorem{corollary}[subsection]{Corollary}
+% \newtheorem{subcorollary}[subsubsection]{Corollary}
+% \newtheorem{claim}[subsection]{Claim}
+
+% %\theoremstyle{remark}
+% \newtheorem{remark}[subsection]{Remark}
+% %\newtheorem*{remark*}{Remark}
+% \newtheorem{example}[subsection]{Example}
+
+% %\theoremstyle{definition}
+% \newtheorem{definition}[subsection]{Definition}
+% \newtheorem{subdefinition}[subsubsection]{Definition}
+
+
+% % numbering
+% \makeatletter
+% \@addtoreset{equation}{section}
+% \@addtoreset{figure}{section}
+% \@addtoreset{table}{section}
+% \makeatother
+
+% \renewcommand{\theequation}{\thesection.\arabic{equation}}
+% \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+% \renewcommand{\thetable}{\thesection.\arabic{table}}
+
+
+% % -------- begin myemph --------------------
+% \makeatletter
+% \newcommand\testshape{family=\f@family; series=\f@series; shape=\f@shape.}
+% \def\myemphInternal#1{\if n\f@shape%
+% 	\begingroup\itshape #1\endgroup\/%
+% 	\else\begingroup\sffamily #1\endgroup%
+% 	\fi}
+% \def\myemph{\futurelet\testchar\MaybeOptArgmyemph}
+% \def\MaybeOptArgmyemph{\ifx[\testchar \let\next\OptArgmyemph
+% 	\else \let\next\NoOptArgmyemph \fi \next}
+% \def\OptArgmyemph[#1]#2{\index{#1}\myemphInternal{#2}}
+% \def\NoOptArgmyemph#1{\myemphInternal{#1}}
+% \makeatother
+% % -------- end myemph --------------------
+
+\newcommand\bC{{\mathbb C}}
+\newcommand\DDD{{\mathbb D}}
+\newcommand\bN{{\mathbb N}}
+\newcommand\bQ{{\mathbb Q}}
+\newcommand\bR{{\mathbb R}}
+\newcommand\SSS{{\mathbb S}}
+\newcommand\bZ{{\mathbb Z}}
+
+\newcommand\FFF{{\mathcal F}}
+\newcommand\GGG{{\mathcal G}}
+\newcommand\HHH{{\mathcal H}}
+
+\newcommand\AAA{{\mathcal A}}
+\newcommand\BBB{{\mathcal B}}
+\newcommand\CC{{\mathcal C}}
+% \newcommand\DD{{\mathcal D}}
+\newcommand\EE{{\mathcal E}}
+\newcommand\FF{{\mathcal F}}
+\newcommand\GG{{\mathcal G}}
+\newcommand\II{{\mathcal I}}
+\newcommand\JJ{{\mathcal J}}
+\newcommand\KK{{\mathcal K}}
+\newcommand\MM{{\mathcal M}}
+\newcommand\NN{{\mathcal N}}
+\newcommand\OO{{\mathcal O}}
+\newcommand\RR{{\mathcal R}}
+\newcommand\TT{{\mathcal T}}
+\newcommand\UU{{\mathcal U}}
+\newcommand\VV{{\mathcal V}}
+\newcommand\WW{{\mathcal W}}
+\newcommand\XX{{\mathbf X}}
+\newcommand\YY{{\mathbf Y}}
+\newcommand\ZZ{{\mathcal Z}}
+
+
+\newcommand\isot{\mathrm{isot}}
+
+\newcommand\cov[1]{\tilde{#1}}
+\newcommand\eps{\varepsilon}
+
+
+\newcommand\limtimes{\mathop\times\limits}
+\newcommand\id{\mathrm{id}}          % identity map
+\newcommand\IM{\mathrm{Im}}          % imaginary part
+\newcommand\RE{\mathrm{Re}}          % real part
+\newcommand\Int{\mathrm{Int}}        % interior
+\newcommand\Per{\mathrm{Per}}        % periodic points
+\newcommand\Fix[1]{\mathrm{Fix}(#1)} % fixed points
+\newcommand\supp{\mathrm{supp\,}}    % support
+\newcommand\grad{\triangledown}      % gradient
+\newcommand\rank{\mathrm{rank}}      % rank
+\newcommand\ab{\mathrm{ab}}          % abelianization  
+\newcommand\wrm[1]{\wr_{#1}} %{\mathop{\wr}\limits_{#1}} %{\wr_{#1}} %
+\newcommand\nwr[3]{#1\wr_{#2}{#3}}   % noneffective wreath product
+\newcommand\ewr[2]{#1\wr{#2}}        % effective wreath product
+
+\newcommand\ptnum[1]{|#1|}
+\newcommand\MOD[2]{#1\bmod#2}
+\newcommand\vstar[1]{\mathrm{star}(#1)}
+% specific macro
+
+% axioms
+\newcommand\AxCrPt{{\text{\rm(L)}}}
+\newcommand\AxBd{{\text{\rm(B)}}}
+
+
+% sets, manifolds
+
+\newcommand\Aman{A}
+\newcommand\Bman{B}
+\newcommand\Cman{C}
+\newcommand\Lman{L}
+\newcommand\Mman{M}
+\newcommand\Nman{N}
+\newcommand\Pman{P}
+\newcommand\Qman{Q}
+\newcommand\Rman{R}
+\newcommand\Tman{T}
+\newcommand\Uman{U}
+\newcommand\Vman{V}
+\newcommand\Wman{W}
+\newcommand\Xman{X}
+\newcommand\Yman{Y}
+\newcommand\Zman{Z}
+
+\newcommand\tPman{\widetilde{\Pman}}
+
+
+\newcommand\hNman{\widehat{\Nman}}
+\newcommand\hLman{\widehat{\Lman}}
+\newcommand\hQman{\widehat{\Qman}}
+
+\newcommand\Circle{S^1}            % Circle
+\newcommand\UInt{[0,1]}
+
+%  surfaces
+\newcommand\Disk{D^2}              % 2-disk
+\newcommand\Cylinder{A} %{S^1\times I}  % Cylinder
+\newcommand\MobiusBand{M\text{\"{o}}}         % Moebius band
+
+\newcommand\Sphere{S^2}            % 2-sphere
+\newcommand\Torus{T^2}             % 2-torus
+
+\newcommand\PrjPlane{\bR{P}^2}    % Projetive plane
+\newcommand\KleinBottle{K^2}       % Klein bottle
+
+
+\newcommand\Cyli[1]{\Cylinder_{#1}}
+
+% standard groups
+\newcommand\GL{\mathrm{GL}}
+\newcommand\SL{\mathrm{SL}}
+\newcommand\SO{\mathrm{SO}}
+
+% spaces of maps
+
+
+% notation for spaces of maps
+\newcommand\Orb{\mathcal{O}}        % orbit
+\newcommand\Stab{\mathcal{S}}       % stabilizer
+\newcommand\Diff{\mathcal{D}}       % diffeomorphisms
+\newcommand\Homeo{\mathcal{H}}      % homeomorphisms
+\newcommand\Aut{\mathrm{Aut}}       % automorphisms
+\newcommand\Hom{\mathrm{Hom}}      % homeomorphisms
+\newcommand\End{\mathcal{E}}        % endomorphisms
+\newcommand\Map{\mathrm{Map}}       % maps
+\newcommand\Maps[2]{#2^{#1}}        % maps
+
+% identity path components
+\newcommand\DiffId{\Diff_{\id}}     % diffeomorphisms
+\newcommand\HomeoId{\Homeo_{\id}}   % homeomorphisms
+\newcommand\StabId{\Stab_{\id}}     % stabilizer
+
+
+% other general functional spaces
+\newcommand\Cr[1]{\mathcal{C}^{#1}}
+\newcommand\Cinfty{\Cr{\infty}}
+\newcommand\Crm[3]{\mathcal{C}^{#1}(#2,#3)}               % space of C^\infty maps
+\newcommand\Cont[2]{\Crm{}{#1}{#2}}            % space of continuous maps
+\newcommand\Ci[2]{\Crm{\infty}{#1}{#2}}               % space of C^\infty maps
+\newcommand\Cid[2]{\mathcal{C}_{\partial}^{\infty}(#1,#2)}   % space of C^\infty maps taking constant values of the boundary
+
+
+% maps, functions
+\newcommand\func{f}
+\newcommand\gfunc{g}
+\newcommand\dif{h}
+\newcommand\hdif{\cov{\dif}}
+\newcommand\gdif{g}
+\newcommand\hgdif{\cov{\gdif}}
+\newcommand\qdif{q}
+
+\newcommand\tfunc{\tilde{\func}}
+
+
+% spaces for surface \Mman
+\newcommand\DiffM{\Diff(\Mman)}
+\newcommand\DiffMdM{\Diff(\Mman,\partial\Mman)}
+\newcommand\DiffIdM{\DiffId(\Mman)}
+\newcommand\DiffIdMdM{\DiffId(\Mman,\partial\Mman)}
+
+\newcommand\DiffP{\Diff(\Pman)}
+
+\newcommand\DiffMX{\Diff(\Mman, \Xman)}
+\newcommand\DiffIdMX{\DiffId(\Mman, \Xman)}
+
+\newcommand\Morse{\mathrm{Morse}}
+
+\newcommand\aFlow{\mathbf{F}}
+\newcommand\classP{\mathsf{S}}
+\newcommand\classR{\mathsf{G}}
+
+\newcommand\cS[3]{\classP_{#1,#3}^{#2}}
+\newcommand\cG[3]{\classR_{#1,#3}^{#2}}
+\newcommand\mS[3]{\widehat{\classP}_{#1,#3}^{#2}}
+\newcommand\mG[3]{\widehat{\classR}_{#1,#3}^{#2}}
+
+
+\newcommand\aGrp{A}
+\newcommand\bGrp{B}
+\newcommand\cGrp{C}
+
+
+% function \func
+\newcommand{\nb}{\mathrm{nb}}
+\newcommand\DiffNbh{\Diff_{{\nb}}}     % diffeomorphisms
+
+
+% stabilizers and orbits
+\newcommand\Stabilizer[1]{\Stab(#1)}             % stabilizer of function #1
+\newcommand\StabilizerPlus[1]{\Stab^{+}(#1)}     % stabilizer of function #1 preserving orientation
+\newcommand\StabilizerMinus[1]{\Stab^{-}(#1)}     % stabilizer of function #1 preserving orientation
+\newcommand\StabilizerId[1]{\StabId(#1)}         % identity path component of the stabilizer of #1
+\newcommand\StabilizerIsotId[1]{\Stab'(#1)}      % elements of stabilizer of #1 isotopic to id
+\newcommand\StabilizerInv[1]{\Stab_{\mathrm{inv}}(#1)}  % elements of stabilizer of #1 leaving invariant
+\newcommand\StabilizerNbh[1]{\Stab_{{\nb}}(#1)}  % elements of stabilizer of #1 fixed on some neighborhood
+\newcommand\StabilizerNbhIsotId[1]{\Stab'_{{\nb}}(#1)}  % elements of stabilizer of #1 fixed on some neighborhood
+
+\newcommand\Orbit[1]{\Orb(#1)}                   % orbit of a function #1
+\newcommand\OrbitPathComp[2]{\Orb_{#2}(#1)}      % path component of the orbit #1 containing #2
+
+\newcommand\SingularSet[1]{\Sigma_{#1}}             % the set of singular (critical) points of #1
+
+
+\newcommand\KronrodReebGraph[1]{\Gamma(#1)}                   % Kronrod-Reeb graph of #1
+\newcommand\AutKRGraphStab[1]{\mathbf{G}}             % group of automorphisms of Kronrod-Reeb graph induced by diffeomorphisms from the
+
+\newcommand\fStab{\Stabilizer{\func}}             % stabilizer of f
+\newcommand\fStabId{\StabilizerId{\func}}         % identity path component of the stabilizer
+\newcommand\fStabIsotId{\StabilizerIsotId{\func}}  % \fStab \cap \DiffIdM
+\newcommand\fStabdMIsotId{\StabilizerIsotId{\func,\partial\Mman}}  % \fStab \cap \DiffId(M,\partial M)
+
+\newcommand\fStabX{\Stabilizer{\func,\Xman}}             % stabilizer of f
+\newcommand\fStabIdX{\StabilizerId{\func, \Xman}}         % identity path component of the stabilizer
+\newcommand\fStabIsotIdX{\StabilizerIsotId{\func, \Xman}}  % \fStab \cap \DiffIdM
+
+
+\newcommand\fOrb{\Orbit{\func}}                     % orbit of f
+\newcommand\fOrbComp{\OrbitPathComp{\func}{\func}}  % path component of the orbit of f contaning f
+
+\newcommand\fOrbX{\Orbit{\func, \Xman}}                     % orbit of f
+\newcommand\fOrbCompX{\OrbitPathComp{\func, \Xman}{\func}}  % path component of the orbit of f contaning f
+
+\newcommand\fOrbdM{\Orbit{\func, \partial\Mman}}                     % orbit of f
+\newcommand\fOrbCompdM{\OrbitPathComp{\func, \partial\Mman}{\func}}  % path component of the orbit of f contaning f
+
+\newcommand\fSing{\SingularSet{\func}}                % the set of critical points of f
+
+\newcommand\fKRGraph{\KronrodReebGraph{\func}}            % Kronrod-Reeb graph
+\newcommand\fKRAut{\AutKRGraphStab{\func}(\func)}         % group automorphisms of fKRGraph induced by \fStab
+\newcommand\homStabToAutG{\lambda}     % homomorphism S(f) --> Aut(Gamma(f)) with kernel D(Delta_f)
+
+
+\newcommand\regU[1]{U_{#1}}
+\newcommand\regN[1]{R_{#1}}
+\newcommand\canN[1]{N_{#1}}
+
+
+\newcommand\hMman{\cov{\Mman}}  % a surface obtained by gluing boundary components with 2-disks
+
+\newcommand\crLev{K}
+\newcommand\crNbh{\Nman}
+
+\newcommand\bSurf{\Vman}
+\newcommand\iSurf{\Xman}
+\newcommand\nSurf{\Yman}
+
+\newcommand\hiSurf{S}
+\newcommand\hnSurf{T}
+
+
+
+\newcommand\usim{\underset{\crLev}{\sim}}
+\newcommand\dsim{\underset{\partial\crNbh}{\sim}}
+
+
+\newcommand\bComp{B}
+\newcommand\hbComp{\Vman}
+\newcommand\hcrNbh{\cov{\crNbh}}
+\newcommand\bCyl{C}
+\newcommand\dCyl{Q}
+\newcommand\hdCyl{\cov{\dCyl}}
+
+
+\newcommand\uTriv{\mathcal{T}(\func,\crLev)}
+\newcommand\dTriv{\mathcal{T}(\func,\partial\crNbh)}
+
+\newcommand\isoStabfB{\psi}
+\newcommand{\qind}{q}
+
+
+\newcommand{\StabR}{\Stab^{R}}
+\newcommand{\StabLR}{\Stab^{LR}}
+\newcommand{\OrbR}{\Orb^{R}}
+\newcommand{\OrbLR}{\Orb^{LR}}
+
+\newcommand\regNK{R_{K}}
+\newcommand\canNK{N_{K}}
+
+
+\newcommand\fld{F}
+\newcommand\flow{\mathbf{F}}
+\newcommand{\hflow}{\cov{\flow}}
+
+\newcommand\gfld{G}
+\newcommand\gflow{\mathbf{G}}
+\newcommand{\hgflow}{\cov{\gflow}}
+
+
+\newcommand\hfld{\cov{\fld}}
+\newcommand\orb{\omega}
+\newcommand\homega{\cov{\orb}}
+
+\newcommand\hgamma{\cov{\gamma}}
+\newcommand\HH{\mathbb{H}}
+\newcommand\dHH{\partial\HH}
+\newcommand\intHH{\mathrm{Int}\HH}
+\newcommand\hD{\widehat{D}}
+\newcommand\hw{s}
+
+
+
+\newcommand\LStab{\mathcal{L}}
+\newcommand\LStabPl{\LStab^{+}}
+\newcommand\LStabInv{\mathcal{L}_{{\nb}}}
+\newcommand\image{\mathrm{image}}
+
+
+\newcommand\FolStab{\Delta} %{{\color{red}\mathcal{L}}}
+\newcommand\FolStabilizer[1]{\FolStab(#1)}
+\newcommand\FolStabilizerNbh[1]{\FolStab_{{\nb}}(#1)}
+\newcommand\FolStabilizerIsotId[1]{\FolStab'(#1)}
+\newcommand\FolStabilizerNbhIsotId[1]{\FolStab'_{{\nb}}(#1)}
+\newcommand\MFolStabilizer[1]{\FolStab^{-}(#1)}
+
+
+%\newcommand\GKR{{\color{green}\mathbf{G}}}
+\newcommand\GKR{\mathbf{G}}
+\newcommand\GrpKR[1]{\GKR(#1)}
+\newcommand\GrpKRIsotId[1]{\GKR'(#1)}
+\newcommand\GrpKRNbh[1]{\GKR_{{\nb}}(#1)}
+\newcommand\GrpKRNbhIsotId[1]{\GKR'_{{\nb}}(#1)}
+
+%\newcommand\GH{{\color{blue}\Gamma}}
+\newcommand\GH{\Gamma}
+\newcommand\GHom[1]{\GH(#1)}
+\newcommand\GHomIsotId[1]{\GH'(#1)}
+\newcommand\GHomNbh[1]{\GH_{\nb}(#1)}
+\newcommand\GHomNbhIsotId[1]{\GH'_{\nb}(#1)}
+
+
+% \newcommand\dd[2]{{#1}'_{#2}}
+
+\newcommand\halpha{\cov{\alpha}}
+
+\newcommand\hXman{{\Xman}^{\partial}}
+\newcommand\hYman{{\Yman}^{\partial}}
+\newcommand\hZman{{\Zman}^{\partial}}
+\newcommand\hUman{\Uman^{\partial}}
+
+
+\newcommand\fStabFol{\mathcal{L}'(\func)}
+\newcommand\fStabFolX{\mathcal{L}'(\func,\Xman)}
+\newcommand\fGFol{\mathbf{G}(\func)}
+\newcommand\fGFolX{\mathbf{G}(\func,\Xman)}
+
+\newcommand{\fFol}{\Delta_{\func}}
+
+\newcommand\fStabLev{\mathcal{L}(\func)}
+\newcommand\fStabLevX{\mathcal{L}(\func,X)}
+
+\newcommand\StabFol{\mathcal{L}}
+\newcommand\StabFolIsotId{\mathcal{L}'}
+\newcommand\GFol{\mathbf{G}}
+
+
+\newcommand\DF{\Diff(\flow,\Circle\times 0)}
+\newcommand\DhF{\Diff(\hflow,\bR\times 0)}
+\newcommand\htheta{\cov{\theta}}
+\newcommand\FSet{A}
+\newcommand\clCl{O}
+\newcommand\hclCl{\cov{O}}
+
+\newcommand\QcaseEmpty{{\rm(i)}}
+\newcommand\QcaseFinite{{\rm(ii)}}
+\newcommand\QcaseCircle{{\rm(iii)}}
+
+
+\newcommand\hCyl{\cov{\Cylinder}}
+%\newcommand\hVman{\cov{\Vman}}
+\newcommand\HPlane{\mathbb{H}}
+
+\newcommand\threepar[3]{{#1}_{#2,#3}}
+
+\newcommand\YYi[2]{\threepar{\SY{}}{#1}{#2}}
+\newcommand\HHi[2]{\threepar{\mathbf{H}}{#1}{#2}}
+\newcommand\Yi[2]{\threepar{\Yman}{#1}{#2}}
+\newcommand\hYi[2]{\hYman_{#1,#2}}
+\newcommand\difi[2]{\threepar{\dif}{#1}{#2}}
+\newcommand\bdifi[2]{\threepar{\bar{\dif}}{#1}{#2}}
+\newcommand\gdifi[2]{\threepar{\bar{\bar{\dif}}}{#1}{#2}}
+
+\newcommand\GRP[3]{#1_{#2_{#3}}}
+
+% \newcommand\DZ[2]{\GRP{\Delta}{#1}{#2}}
+\newcommand\SZ[2]{\GRP{\mathcal{S}}{#1}{#2}}
+\newcommand\GZ[2]{\GRP{G}{#1}{#2}}
+
+\newcommand\DX[1]{\DZ{\Xman}{#1}}
+\newcommand\SX[1]{\SZ{\Xman}{#1}}
+\newcommand\GX[1]{\GZ{\Xman}{#1}}
+
+\newcommand\DY[1]{\DZ{\Yman}{#1}}
+\newcommand\SY[1]{\SZ{\Yman}{#1}}
+\newcommand\GY[1]{\GZ{\Yman}{#1}}
+
+\newcommand\UX{1_{\Xman}}
+\newcommand\UY{1_{\Yman}}
+
+\newcommand\lX{\lambda_{\Xman}}
+\newcommand\lY{\mu_{\Yman}}
+
+
+\newcommand\monoArrow{\lhook\joinrel\rightarrow}
+\newcommand\longmonoArrow{\lhook\joinrel\longrightarrow}
+\newcommand\xmonoArrow[1]{\lhook\joinrel\xrightarrow{~#1~}}
+\newcommand\xlongmonoArrow[1]{\lhook\joinrel\xrightarrow{~~~~#1~~~~}}
+
+\newcommand\epiArrow{\rightarrow\!\!\!\!\!\to}
+\newcommand\longepiArrow{\longrightarrow\!\!\!\!\!\to}
+\newcommand\xepiArrow[1]{\xrightarrow{#1}\!\!\!\!\!\to}
+\newcommand\xlongepiArrow[1]{\xrightarrow{~~~#1~~~}\!\!\!\!\!\to}
+
+
+
+\newcommand\xStab{\Stab}
+\newcommand\xFolStab{\Delta}
+\newcommand\xalpha{\alpha}
+
+
+\newcommand\DAFunc[1]{\Theta(#1)}
+\newcommand\DFunc{\DAFunc{\fld}}
+
+\newcommand\Sh[1]{\varphi_{#1}}
+
+\newcommand\gm{Z} %\langle \gdif^m \rangle}
+
+
+%\providecommand\subparagraph[1]{}
+\newcommand\mprod{\mathop{\Pi}} %{\mathop{\times}}
+\newcommand\myprod{\mathop{\prod}}
+\newcommand\mymod{\,\mathrm{mod}\,}
+\newcommand\mmod[2]{(#1)_{#2}}
+
+
+\newcommand\mcirc{\,}
+\newcommand\adif{\alpha}
+\newcommand\bdif{\beta}
+%\newcommand\elem[2]{\bigl( \{ #1\}_{i=0,\ldots,m-1}^{j=1,\ldots,c}, \ #2 \bigr)}
+\newcommand\prodij{\mathop{\Pi}\limits_{i,j}}
+\newcommand\elem[2]{\Bigl( \prodij #1, \ #2 \Bigr)}
+
+
+
+
+%\def\cntA{k}
+\def\cntColor{Mulberry}
+\def\cnt{k}
+
+\def\abColor{Tan}
+\def\acnt{c}
+\def\bcnt{d}
+
+
+\newcommand{\tMman}{\tilde{\Mman}}
+\newcommand{\tVman}{\tilde{\Vman}}
+\newcommand{\tXman}{\tilde{\Xman}}
+
+\newcommand\jIncl{j}
+\newcommand\jInclZ{\jIncl_0}
+
+
+\newcommand\restr{r}
+\newcommand\sect{s}
+\newcommand\arestr{\rho}
+\newcommand\asect{\sigma}
+
+\newcommand\StabZ[1]{\Stab^{#1}}
+\newcommand\DeltaZ[1]{\Delta^{#1}}
+\newcommand\pStabZ[1]{\Stab_{#1}}
+\newcommand\pDeltaZ[1]{\Delta_{#1}}
+
+\newcommand\unitel[1]{\mathbf{E}_{#1}}
+
+\newcommand\prodi{\mathop{\Pi}\limits_{i}}
+
+
+
+\newcommand\KRGraphf{\Gamma_{\func}}
+\newcommand\EKRGraphf{\widehat{\Gamma}_{\func}}
+\newcommand\PF[1]{\widehat{#1}}
+
+\newcommand\crsdl{x}
+\newcommand\cra{y}
+\newcommand\crb{z}
+
+
+\newcommand\funcSeq{\mathbf{b}}
+\newcommand\seqStab[1]{\funcSeq(#1)}
+\newcommand\seqStabIsotId[1]{\funcSeq'(#1)}
+\newcommand\seqStabNbh[1]{\funcSeq_{\nb}(#1)}
+\newcommand\seqStabNbhIsotId[1]{\funcSeq'_{\nb}(#1)}
+
+
+\newcommand\DSG{{\funcSeq'}\!} %{\mathcal{B}}%{\mathsf{\Delta{SG}}}
+\newcommand\sDSG[1]{\DSG\left(#1\right)}
+%\newcommand\dDSG[2]{\DSG_{\partial}\!\left(#1,#2\right)}
+\newcommand\dDSG[2]{\DSG(#1|_{#2},\partial#2)}
+\newcommand\seqZ[1]{\mathbf{z}_{#1}}
+\newcommand\seqWr[2]{#1 \wr #2}
+\newcommand\seqWrm[2]{#1 \wr \seqZ{#2}}
+\newcommand\seqTriv{\seqZ{0}} %{\mathbf{t}}
+\newcommand\aSeq{\mathbf{q}}
+\newcommand\uSeq{\mathbf{u}}
+\newcommand\vSeq{\mathbf{v}}
+\newcommand\wSeq{\mathbf{w}}
+
+\newcommand\kSeq{\mathbf{k}}
+\newcommand\lSeq{\mathbf{l}}
+\newcommand\mSeq{\mathbf{l}}
+
+
+
+\newcommand\classZ{\mathcal{Z}}
+\newcommand\classStab{\mathcal{B}}
+\newcommand\classStabT{\mathcal{B}^{\mathbf{z}\times\mathbf{z}}}
+\newcommand\classStabD{\mathcal{B}_{2}}
+\newcommand\classStabTD{\mathcal{B}_{2}^{\mathbf{z}\times\mathbf{z}}}
+
+\newcommand\classGrp{\mathcal{P}}
+\newcommand\classGrpD{\mathcal{P}_{2}}
+\newcommand\classGrpT{\mathcal{P}^{\mathbf{z}\times\mathbf{z}}}
+\newcommand\classGrpTD{\mathcal{P}_{2}^{\mathbf{z}\times\mathbf{z}}}
+
+
+
+\newcommand\classZBP{\widetilde{\classZ\classStab\classGrp}}
+\newcommand\ZBP{\classZ\classStab\classGrp}
+
+\newcommand\classZBPD{\classZ\classStabD\classGrpD}
+
+
+
+\newcommand\JacIdeal{\added{\mathcal{I}_0(\func_z)}}
+\newcommand\lfrm{\Phi}
+\newcommand\zfrm[1]{\lfrm(#1)}
+
+\newcommand\bZman{\mathbf{Z}}
+\newcommand\bZmanX{\bZman^{fix}}
+\newcommand\bZmanY{\bZman^{reg}}
+
+\newcommand\cgdif{\gdif}
+
+
+\newcommand\XFix{\Xman}
+\newcommand\XFixA{\XFix_0}
+\newcommand\XFixB{\XFix_1}
+\newcommand\hXFix{\XFix^{\partial}}
+\newcommand\hXFixA{\hXFix_0}
+\newcommand\hXFixB{\hXFix_1}
+
+
+
+
+
+\newcommand\hb{\eta}
+\newcommand\hc{\zeta}
+\newcommand\ia{\alpha}
+\newcommand\fc{\rho}
+
+\newcommand\xA{A} %{{\color{red}A}_{#1}}
+\newcommand\xB{B} %{{\color{red}B}_{#1}}
+\newcommand\xC{C} %{{\color{red}C}_{#1}}
+
+
+\newcommand\kA{K} %{{\color{red}A}_{#1}}
+\newcommand\kB{L} %{{\color{red}B}_{#1}}
+\newcommand\kC{M} %{{\color{red}C}_{#1}}
+
+
+
+\newcommand\zA[1]{K_{#1}}
+\newcommand\zB[1]{L_{#1}}
+\newcommand\zC[1]{M_{#1}}
+%\newcommand\zA[1]{{\color{blue}\widehat{A}}_{#1}}
+%\newcommand\zB[1]{{\color{blue}\widehat{B}}_{#1}}
+%\newcommand\zC[1]{{\color{blue}\widehat{C}}_{#1}}
+
+
+\newcommand\xv[1]{b_{#1}} 
+\newcommand\xw[1]{c_{#1}} 
+
+\newcommand\RB{\Xman}
+\newcommand\cc[1]{\mathrm{(a#1)}}
+\newcommand\ccInvm{\cc{1}}
+\newcommand\ccSfR{\cc{2}}
+\newcommand\ccSfX{\cc{3}}
+\newcommand\ccTildeEta{\cc{4}}
+\newcommand\ccIntervals{\cc{5}}
+\newcommand\ccEdges{\cc{6}}
+
+
+\newcommand\xc[1]{$\mathrm{(c#1)}$}
+\newcommand\ppx{x}
+\newcommand\ppy{y}
+\newcommand\ppz{z}
+
+\newcommand\rIso{\alpha}
+\newcommand\pcnt{p}
+
+
+\newcommand\UA{\Uman_{\Cylinder}}
+\newcommand\UB{\Uman_{\Bman}}
+\newcommand\fA{\func|_{\Cylinder}}
+\newcommand\fB{\func|_{\Bman}}
+\newcommand\lift{l}
+\newcommand\lf[1]{\lift(#1)}
+
+\newcommand\aDisk{D}
+
+\newcommand\ggA{\mathsf{A}}
+\newcommand\ggB{\mathsf{B}}
+\newcommand\ggC{\mathsf{C}}

@@ -1,0 +1,138 @@
+\section{Симплекси}
+
+\begin{definition}[Лінійно-незалежні вектори]
+Вектори $a_{1}, \ldots, a_{k} \in \mathbb{R}^n$ називають \myemph{лінійно залежними (ЛЗ)}, якщо існують такі числа $\alpha_{1}, \alpha_{2}, \ldots, \alpha_{k} \neq 0$, що
+\[ \alpha_{1}a_{1}+\alpha_{2}a_{2}+\ldots+\alpha_{k} a_{k}=0. \]
+У зворотньому випадку вони називаються \myemph{лінійно незалежними}.
+\end{definition}
+
+
+\begin{definition}[Лінійно-незалежна система точок в $\mathbb{R}^{n}$]
+Скінченна множина точок $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$ називається \myemph{лінійно незалежною (ЛНЗ)} системою точок, якщо вектори
+\begin{align*}
+    x_{1} - x_{0}, \ \quad
+    x_{2} - x_{0}, \ \quad
+    x_{3} - x_{0}, \ \quad
+    \ldots,        \ \quad
+    x_{k} - x_{0}
+\end{align*}
+лінійно незалежні.
+\end{definition}
+
+\begin{lemma}
+Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$ скінченна підмножина.
+Тоді для довільних $a,b\in \{0,\ldots,k\}$ системи векторів
+\begin{align*}
+    \alpha &= \{ x_{i} - x_{a} \mid i \not= a\}, &
+    \beta  &= \{ x_{i} - x_{b} \mid i \not= b\}
+\end{align*}
+є одночасно ЛЗ або ЛНЗ.
+Зокрема, поняття ЛНЗ системи точок не залежить від їх порядку.
+\end{lemma}
+
+
+\newcommand\conv[1]{\overline{#1}}
+\newcommand\st[2]{\mathrm{st}_{#2}(#1)}
+
+Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$ скінченна підмножина.
+Позначимо через
+\[
+   \conv{A} = \{ \alpha_{0} x_{0}+\alpha_{1} x_{1}+\ldots+\alpha_{k} x_{k} \mid \alpha_i \geq0, \sum_{i=0}^{k}\alpha_i = 1 \}
+\]
+опуклу оболонку цієї множини.
+
+\begin{lemma}\label{lm:charact:LNZ}
+Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$ скінченна підмножина з $k+1$  точки.
+Тоді наступні умови є еквівалентними.
+\begin{enumerate}[label={\rm(\arabic*)}, itemsep=1ex]
+\item
+$A$ -- ЛНЗ система;
+\item
+Якщо
+\begin{align*}
+    &\{ \alpha_{i} \mid \alpha_i \geq0, \sum_{i=0}^{k}\alpha_i = 1 \}, &
+    &\{ \beta_{i} \mid \beta_i \geq0, \sum_{i=0}^{k}\beta_i = 1 \},
+\end{align*}
+два впорядковані набори чисел, такі, що
+\[
+    \alpha_{0} x_{0}+\alpha_{1} x_{1}+\ldots+\alpha_{k} x_{k} =
+    \beta_{0} x_{0}+\beta_{1} x_{1}+\ldots+\beta_{k} x_{k},
+\]
+то $\alpha_i = \beta_i$ для всіх $i$;
+
+\item
+Нехай $L$ -- перетин всіх площин в $\mathbb{R}^n$, які містять множину $A$.
+Тоді $\dim L = k$.
+\end{enumerate}
+\end{lemma}
+
+Ця лема показує, що кожна точка $x \in \conv{A}$ має єдине представлення у вигляді
+\[ x= \alpha_{0} x_{0}+\alpha_{1} x_{1} + \ldots + \alpha_{k} x_{k}, \]
+у якому всі $\alpha_i \geq0$ і $\sum\limits_{i=0}^{k}\alpha_i = 1$.
+Ці числа називають \myemph{барицентричними координатами} точки $x\in\conv{A}$.
+
+
+\begin{definition}[Симплекс]
+Якщо $A$ -- ЛНЗ система з $k+1$ точки в $\mathbb{R}^n$, то $\conv{A}$ називається \myemph{симплексом} розмірності $k$.
+
+Якщо $B\subset A$ -- довільна підмножина, то симплекс $\conv{B} \subset \conv{A}$ називають \myemph{гранню} $\conv{A}$.
+Зокрема $\varnothing = \conv{\varnothing}$ і $\conv{A}$ є гранями $\conv{A}$ розмірностей $-1$ та $k$ відповідно.
+Грані розмірності $0$ та $1$ називають також \myemph{вершинами} та \myemph{ребрами}.
+\end{definition}
+
+
+\section{Поліедри}
+
+\begin{definition}[Правильно розміщені симплекси]
+Два симплекси $\conv{A}$ і $\conv{B}$ в $\mathbb{R}^n$ називаються \myemph{правильно розміщеними}, якщо $\conv{A} \cap \conv{B}$ є їх спільною гранню (зокрема він може бути порожнім, тобто гранню розмірності $-1$).
+\end{definition}
+
+\begin{definition}[Поліедр]
+Нехай $\tau = \{\conv{A_1},\ldots,\conv{A_s}\}$ -- скінченний набір симплексів в $\mathbb{R}^n$ і $K = \mathop{\cup}\limits_{i=1}^{s}\conv{A_i}$.
+Тоді $K$ називається \myemph{скіченним поліедром}, якщо кожна пара симплексів $\conv{A_i}$ і $\conv{A_j}$ є правильно розміщеною.
+В цьому випадку система симплексів $\{ \conv{A_1},\ldots,\conv{A_s} \}$ називається \myemph{триангуляцією} $K$.
+\end{definition}
+
+Поліедр може мати багато триангуляцій.
+
+\begin{lemma}
+Нехай $\conv{A_1},\ldots,\conv{A_s}$ -- скінченний набір симплексів в $\mathbb{R}^n$ (необов'язково правильно розміщених) і $K = \mathop{\cup}\limits_{i=1}^{s}\conv{A_i}$.
+Тоді існують триангуляції кожного симплекса $\conv{A_i} = \mathop{\cup}\limits_{j=1}^{q_i}\conv{B_{ij}}$, такі, що $K = \mathop{\cup}\limits_{i=1}^{s}\mathop{\cup}\limits_{j=1}^{q_i}\conv{B_{ij}}$ є триангуляцією, тобто будь-які два симплекси $\conv{B_{ij}}$ і $\conv{B_{i'j'}}$ є правильно розміщеними.
+Зокрема, $K$ все одно є поліедром.
+\end{lemma}
+
+\begin{definition}[Підполіедр]
+Нехай $K$ -- поліедр з триангуляцією \[ \tau = \{\conv{A_1},\ldots,\conv{A_s}\}. \]
+Тоді пімножина $L \subset K$ називається \myemph{підполіедром $K$ (відносно триангуляції $\tau$)}, якщо $L$ є об'єднанням деяких симплексів в $\tau$.
+
+В цьому випадку \myemph{зіркою $L$ (відносно $\tau$)} називають об'єднання всіх граней всіх замкнених симплексів, що перетинають $L$.
+Зірку $L$ позначають через $\st{L}{\tau}$.
+
+Більш загально, пімножина $L \subset K$ називається \myemph{підполіедром} поліедра $K$, якщо $L$ є об'єднанням деяких симплексів з деякої триангуляції $K$.
+\end{definition}
+
+
+\begin{definition}[Конус над поліедром]
+\end{definition}
+
+\begin{definition}[Барицентричне підрозбиття]
+\end{definition}
+
+\begin{definition}[Регулярний окіл підполіедра]
+\end{definition}
+
+% - **Лема**.
+% Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$.
+% Нехай $B$ - перестановка точок в $A$ , де $B = \left\{x_{1}, x_{0}, x_{2}, \ldots, x_{k}\right\}$. Тоді:
+%   - $A$ ЛНЗ $\Leftrightarrow$ $B$ ЛНЗ
+%   - Нехай $L$ – перетин всіх $(n-1)$-площин в $\mathbb{R}^{n}$, які містять $A$. Тоді $A$ ЛНЗ  $\Leftrightarrow$ $dimL=K$
+% -
+
+% ##  Лекція 2. Симплекс
+% - 2021-01-12.
+% [Відео](https://www.youtube.com/watch?v=Plqci0HNgvo)
+% [Конспект](./pl_topology/lecture_2.pdf)
+% - **Def. Правильно розміщені симплекси**. Нехай $\bar{A}$, $\bar{B}$ $\subset \mathbb{R}^{n}$ – два симплекси. Тоді вони є **правильно розміщеними**, якщо:
+%   - або $\bar{A} \cap \bar{B}=\varnothing$
+%   - або $\bar{A} \cap \bar{B}$ – спільна грань
+% - **Def. Поліедр**. Поліедр $K$ в $\mathbb{R}^{n}$ – це об'єднання скінченого числа симплексів $A_{1}, \ldots, A_{l}$, таких що $\forall A_{i} A_{j}$ є правильно розміщеними

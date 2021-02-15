@@ -1,0 +1,65 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = uk_UA
+\documentclass[12pt]{amsart}
+
+%%% packages for use with XeLaTeX
+% \usepackage{fontspec}
+% \setmainfont[
+%   Ligatures=TeX,
+%   Extension=.otf,
+%   BoldFont=cmunbx,
+%   ItalicFont=cmunti,
+%   BoldItalicFont=cmunbi,
+% ]{cmunrm}
+% \usepackage{xecyr}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[ukrainian]{babel}
+\usepackage[margin=2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amsfonts,amssymb,amsmath,amsthm}
+
+\usepackage[unicode]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+\newtheorem{definition}[subsection]{Означення}
+\newtheorem{theorem}[subsection]{Теорема}
+\newtheorem{lemma}[subsection]{Лема}
+\newtheorem{corollary}[subsection]{Наслідок}
+\newtheorem{proposition}[subsection]{Твердження}
+\newtheorem{example}[subsection]{Приклад}
+
+\newtheorem*{subdefinition*}{}
+\newtheorem{zad-def}[subsection]{Задача-означення}
+\newtheorem{zadacha}[subsection]{Задача}
+
+% -------- begin myemph --------------------
+\makeatletter
+\newcommand\testshape{family=\f@family; series=\f@series; shape=\f@shape.}
+\def\myemphInternal#1{\if n\f@shape%
+\begingroup\itshape #1\endgroup\/%
+\else\begingroup\sffamily#1\endgroup%
+\fi}
+\def\myemph{\futurelet\testchar\MaybeOptArgmyemph}
+\def\MaybeOptArgmyemph{\ifx[\testchar \let\next\OptArgmyemph
+                 \else \let\next\NoOptArgmyemph \fi \next}
+\def\OptArgmyemph[#1]#2{\index{#1}\myemphInternal{#2}}
+\def\NoOptArgmyemph#1{\myemphInternal{#1}}
+\makeatother
+% -------- end myemph --------------------
+
+% \input{macro.tex}
+
+\begin{document}
+\large
+\input{text.tex}
+\end{document}

@@ -12,7 +12,7 @@
 - Симплекси
 - Барицентричні координати
 
-## Лекція 2. Поліедри [video](https://www.youtube.com/watch?v=hCzaDl4bOkA)
+## Лекція 2. Поліедри [video](https://www.youtube.com/watch?v=Plqci0HNgvo)
 
 - Правильно розміщені симплекси
 - Поліедри
