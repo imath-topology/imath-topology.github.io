@@ -1,0 +1,1303 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Processing package options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%I___ FOR REVIEWERS
+\newcommand\warn[1]{{\color{red}#1}}
+\newcommand\xrem[1]{{\color{blue}#1}}
+
+
+
+%I___  COUNTER: articlesnum
+\newcounter{articlesnum}
+\setcounter{articlesnum}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I___  Description of options for the package
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\setlanguage #1{\def\LANGUAGE{#1}}
+
+%%%%% ukrainian language
+\DeclareOption{ukrainian}{\setlanguage{ukrainian}}
+
+%%%%% russian language
+\DeclareOption{russian}{\setlanguage{russian}}
+
+%%%%% english language
+\DeclareOption{english}{\setlanguage{english}}
+
+\ExecuteOptions{ukrainian}  % choose default option
+\ProcessOptions\relax       % stop processing options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I___  Set page geometry
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{
+textwidth=12.5cm,
+textheight=19cm,
+paperwidth=17cm,
+paperheight=24cm,
+top=2.5cm,
+left=2.9cm,
+headsep=0.5cm
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{calc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I___  Define page headers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+
+% headers 
+%I______ myplain - all paper pages
+\fancypagestyle{myplain}{
+    \fancyhf{}  % очищаем все настройки для колонтитулов
+    \renewcommand{\headrulewidth}{0pt} % remove top horizontal bar
+    \setlength{\headheight}{14pt}
+%    \fancyhead[LO]{\SHORTTITLE} \fancyhead[RO]{\thepage}
+    \protect\fancyhead[LO]{\small\protect\getShortTitle{\thearticlesnum}}
+    \protect\fancyhead[RO]{\small\thepage}
+
+    \protect\fancyhead[LE]{\small\thepage}
+    \protect\fancyhead[RE]{\small\protect\getTocArticleAuthorsList{\thearticlesnum}}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%
+%I______ myfirstpage - first paper page
+\fancypagestyle{myfirstpage}{
+    \fancyhf{}  % очищаем все настройки для колонтитулов
+    \renewcommand{\headrulewidth}{0pt} % remove top horizontal bar
+    \setlength{\headheight}{5pt}
+    \setlength{\headsep}{5pt}
+    \setlength{\footskip}{35pt}
+    \protect\fancyhead[L]{}
+%    \protect\fancyhead[R]{
+%        \scriptsize
+%        \ifthenelse{\boolean{doiFlag}}
+%                   {DOI: http://dx.doi.org/\getDOI{\thearticlesnum}}
+%                   {\phantom{D}}
+%    }
+    \protect\fancyfoot[C]{\small\thepage}
+}
+
+
+%http://dx.doi.org/10.15673/2072-9812.4/2014.41431
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I___  Environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Styles for theorems, lemmas, etc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Define new theorem styles to make them independent
+%  on the changes in amsthm package
+\def\mysep{0.6em}    % my skip  
+
+\newtheoremstyle{plainstyle} % name
+{1em}                        % Space above
+{\mysep}                     % Space below
+{\itshape}                   % Body font
+{}                           % Indent amount     (\parindent, ...)
+{\bfseries}                  % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}                           % Theorem head spec (can be left empty, meaning �normal�)
+
+\newtheoremstyle{definitionstyle} % name
+{\mysep}                     % Space above
+{\mysep}                     % Space below
+{\normalfont}                % Body font
+{}                           % Indent amount
+{\bfseries}                  % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}                           % Theorem head spec (can be left empty, meaning �normal�)
+
+\newtheoremstyle{remarkstyle} % name
+{\mysep}                     % Space above
+{\mysep}                     % Space below
+{\normalfont}                % Body font
+{}                           % Indent amount
+{\bfseries}                  % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}  % Theorem head spec (can be left empty, meaning �normal�)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Definition of theorems, lemmas, etc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Different styles for different theorem environments
+\theoremstyle{plainstyle}% default (italic body)
+\newtheorem{theorem}[subsection]{\protect\theoremname}
+\newtheorem{lemma}[subsection]{\protect\lemmaname}
+\newtheorem{proposition}[subsection]{\protect\propositionname}
+\newtheorem{claim}[subsection]{\protect\claimname}
+\newtheorem{corollary}[subsection]{\protect\corollaryname}
+\newtheorem{conjecture}[subsection]{\protect\conjecturename}
+\newtheorem{question}[subsection]{\protect\questionname}
+\newtheorem{notation}[subsection]{\protect\notationname}
+\newtheorem{property}[subsection]{\protect\propertyname}
+\newtheorem{definition}[subsection]{\protect\definitionname}
+
+\theoremstyle{definitionstyle} % Roman body
+\newtheorem{algorithm}[subsection]{\protect\algorithname}
+\newtheorem{example}[subsection]{\protect\examplename}
+\newtheorem{examples}[subsection]{\protect\examplesname}
+
+\theoremstyle{remarkstyle} % Roman body
+\newtheorem{problem}[subsection]{\protect\problemname}
+\newtheorem{assumption}[subsection]{\protect\assumptionname}
+\newtheorem{remark}[subsection]{\protect\remarkname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% the same environments but for enumerating with three numbes:
+\theoremstyle{plainstyle}% default (italic body)
+\newtheorem{subtheorem}[subsubsection]{\protect\theoremname}
+\newtheorem{sublemma}[subsubsection]{\protect\lemmaname}
+\newtheorem{subproposition}[subsubsection]{\protect\propositionname}
+\newtheorem{subclaim}[subsubsection]{\protect\claimname}
+\newtheorem{subcorollary}[subsubsection]{\protect\corollaryname}
+\newtheorem{subconjecture}[subsubsection]{\protect\conjecturename}
+\newtheorem{subalgorithm}[subsubsection]{\protect\algorithname}
+\newtheorem{subquestion}[subsubsection]{\protect\questionname}
+\newtheorem{subnotation}[subsubsection]{\protect\notationname}
+
+\theoremstyle{definitionstyle} % Roman body
+\newtheorem{subdefinition}[subsubsection]{\protect\definitionname}
+\newtheorem{subexample}[subsubsection]{\protect\examplename}
+\newtheorem{subexamples}[subsubsection]{\protect\examplesname}
+
+\theoremstyle{remarkstyle} % Roman body
+\newtheorem{subproblem}[subsubsection]{\protect\problemname}
+\newtheorem{subproperty}[subsubsection]{\protect\propertyname}
+\newtheorem{subassumption}[subsubsection]{\protect\assumptionname}
+\newtheorem{subremark}[subsubsection]{\protect\remarkname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\makeatletter
+\@addtoreset{equation}{section}
+\@addtoreset{figure}{section}
+\@addtoreset{table}{section}
+\makeatother
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Names of environments depending on language
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\theoremname}{}
+\newcommand{\lemmaname}{}
+\newcommand{\sublemmaname}{\lemmaname}
+\newcommand{\definitionname}{}
+\newcommand{\problemname}{}
+\newcommand{\propertyname}{}
+\newcommand{\conjecturename}{}
+\newcommand{\assumptionname}{}
+\newcommand{\corollaryname}{}
+\newcommand{\propositionname}{}
+\newcommand{\claimname}{}
+\newcommand{\remarkname}{}
+\newcommand{\algorithname}{}
+\newcommand{\questionname}{}
+\newcommand{\notationname}{}
+\newcommand{\examplename}{}
+\newcommand{\examplesname}{}
+\renewcommand{\figurename}{}
+%%%%%%
+\providecommand{\keywordsnameUkr}{\CYRK\cyrl\cyryu\cyrch\cyro\cyrv\cyrii{} \cyrs\cyrl\cyro\cyrv\cyra}%
+\providecommand{\keywordsname}{}
+\providecommand{\udcname}{}
+%%%%%%
+\newcommand{\receivedname}{}
+\newcommand{\revisedname}{}
+\newcommand{\acceptedname}{}
+%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I_________  ENGLISH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addto\captionsenglish{%
+	\renewcommand{\theoremname}{Theorem}%
+	\renewcommand{\lemmaname}{Lemma}%
+	\renewcommand{\definitionname}{Definition}%
+	\renewcommand{\examplename}{Example}%
+	\renewcommand{\examplesname}{Examples}%
+	\renewcommand{\problemname}{Problem}%
+	\renewcommand{\propertyname}{Property}%
+	\renewcommand{\conjecturename}{Conjecture}%
+	\renewcommand{\assumptionname}{Assumption}%
+	\renewcommand{\corollaryname}{Corollary}%
+	\renewcommand{\propositionname}{Proposition}%
+	\renewcommand{\claimname}{Claim}%
+	\renewcommand{\remarkname}{Remark}%
+	\renewcommand{\algorithname}{Algorithm}%
+    \renewcommand{\questionname}{Question}%
+    \renewcommand{\notationname}{Notation}%
+	\renewcommand{\algorithname}{Proof}%
+	\renewcommand{\figurename}{Figure}%
+%	\renewcommand{\thesubfigure}{\alph{subfigure}.}%
+	\renewcommand{\tablename}{Table}%
+	\renewcommand{\refname}{References}%
+	\renewcommand{\keywordsname}{Keywords}
+	\renewcommand{\udcname}{UDC}
+  \renewcommand{\receivedname}{Received:}
+  \renewcommand{\revisedname}{Revised}
+  \renewcommand{\acceptedname}{accepted:}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I_________  RUSSIAN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\CaptionsRussian{%
+  \renewcommand{\theoremname}{\CYRT\cyre\cyro\cyrr\cyre\cyrm\cyra}%
+	\renewcommand{\lemmaname}{\CYRL\cyre\cyrm\cyrm\cyra}%
+	\renewcommand{\definitionname}{\CYRO\cyrp\cyrr\cyre\cyrd\cyre\cyrl\cyre\cyrn\cyri\cyre}%
+	\renewcommand{\examplename}{\CYRP\cyrr\cyri\cyrm\cyre\cyrr}%
+	\renewcommand{\examplesname}{\CYRP\cyrr\cyri\cyrm\cyre\cyrr\cyry}%
+	\renewcommand{\problemname}{\CYRZ\cyra\cyrd\cyra\cyrch\cyra}%
+	\renewcommand{\propertyname}{\CYRS\cyrv\cyro\cyrii\cyrs\cyrt\cyrv\cyro}%
+	\renewcommand{\conjecturename}{\CYRG\cyri\cyrp\cyro\cyrt\cyre\cyrz\cyra}%
+	\renewcommand{\assumptionname}{\CYRP\cyrr\cyre\cyrd\cyrp\cyro\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyre}%
+	\renewcommand{\corollaryname}{\CYRS\cyrl\cyre\cyrd\cyrs\cyrt\cyrv\cyri\cyre}%
+	\renewcommand{\propositionname}{\CYRP\cyrr\cyre\cyrd\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyre}%
+	\renewcommand{\claimname}{Claim}%
+	\renewcommand{\remarkname}{\CYRZ\cyra\cyrm\cyre\cyrch\cyra\cyrn\cyri\cyre}%
+	\renewcommand{\algorithname}{\CYRA\cyrl\cyrg\cyro\cyrr\cyri\cyrt\cyrm}%
+  \renewcommand{\questionname}{\CYRV\cyro\cyrp\cyrr\cyro\cyrs}%
+  \renewcommand{\notationname}{\CYRO\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyre}%
+	\renewcommand{\proofname}{\CYRD\cyro\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl\cyrsftsn\cyrs\cyrt\cyrv\cyro}%
+	\renewcommand{\figurename}{\CYRR\cyri\cyrs.}%
+%	\renewcommand{\thesubfigure}{\asbuk{subfigure}.}%
+	\renewcommand{\tablename}{\CYRT\cyra\cyrb\cyrl\cyri\cyrc\cyra}%
+	\renewcommand{\refname}{\CYRL\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyra}%
+	\renewcommand{\keywordsname}{\CYRK\cyrl\cyryu\cyrch\cyre\cyrv\cyrery\cyre{} \cyrs\cyrl\cyro\cyrv\cyra}%
+	\renewcommand{\udcname}{\CYRU\CYRD\CYRK}%
+    %%%%%%%%%%%%%%%
+  \renewcommand{\receivedname}{\CYRP\cyro\cyrs\cyrt\cyru\cyrp\cyri\cyrl\cyra{} \cyrv{} \cyrr\cyre\cyrd\cyra\cyrk\cyrc\cyri\cyryu}
+  \renewcommand{\revisedname}{revised}
+  \renewcommand{\acceptedname}{\cyrp\cyrr\cyri\cyrn\cyrya\cyrt\cyra{} \cyrk{} \cyrp\cyre\cyrch\cyra\cyrt\cyri}
+}
+%{принято к печати}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I_________  UKRAINIAN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\CaptionsUkrainian{%
+  \renewcommand{\theoremname}{\CYRT\cyre\cyro\cyrr\cyre\cyrm\cyra}%
+	\renewcommand{\lemmaname}{\CYRL\cyre\cyrm\cyra}%
+	\renewcommand{\definitionname}{\CYRO\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyrn\cyrya}%
+  \renewcommand{\examplename}{\CYRP\cyrr\cyri\cyrk\cyrl\cyra\cyrd}%
+	\renewcommand{\examplesname}{\CYRP\cyrr\cyri\cyrk\cyrl\cyra\cyrd\cyri}%
+	\renewcommand{\problemname}{\CYRZ\cyra\cyrd\cyra\cyrch\cyra}%
+	\renewcommand{\propertyname}{\CYRV\cyrl\cyra\cyrs\cyrt\cyri\cyrv\cyrii\cyrs\cyrt\CYRsftns}%
+	\renewcommand{\conjecturename}{\CYRG\cyrii\cyrp\cyro\cyrt\cyre\cyrz\cyra}%
+	\renewcommand{\assumptionname}{\CYRP\cyrr\cyri\cyrp\cyru\cyrshch\cyre\cyrn\cyrn\cyrya}%
+	\renewcommand{\corollaryname}{\CYRN\cyra\cyrs\cyrl\cyrii\cyrd\cyro\cyrk}%
+	\renewcommand{\propositionname}{\CYRT\cyrv\cyre\cyrr\cyrd\cyrzh\cyre\cyrn\cyrn\cyrya}%
+	\renewcommand{\claimname}{Claim}%
+	\renewcommand{\remarkname}{\CYRZ\cyra\cyru\cyrv\cyra\cyrzh\cyre\cyrn\cyrn\cyrya}%
+	\renewcommand{\algorithname}{\CYRA\cyrl\cyrg\cyro\cyrr\cyri\cyrt\cyrm}%
+    \renewcommand{\questionname}{\CYRP\cyri\cyrt\cyra\cyrn\cyrn\cyrya}%
+    \renewcommand{\notationname}{\CYRP\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyrn\cyrya}%
+    \renewcommand{\proofname}{\CYRD\cyro\cyrv\cyre\cyrd\cyre\cyrn\cyrn\cyrya}%
+	\renewcommand{\figurename}{\CYRR\cyri\cyrs.}%
+%	\renewcommand{\thesubfigure}{\asbuk{subfigure}.}%
+	\renewcommand{\tablename}{\CYRT\cyra\cyrb\cyrl\cyri\cyrc\cyrya}%
+	\renewcommand{\refname}{\CYRL\cyrii\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyra}%
+	\renewcommand{\keywordsname}{\CYRK\cyrl\cyryu\cyrch\cyro\cyrv\cyrii{} \cyrs\cyrl\cyro\cyrv\cyra}%
+	\renewcommand{\udcname}{\CYRU\CYRD\CYRK}%
+	%%%%%%%%%%%%%%%%
+  \renewcommand{\receivedname}{\CYRN\cyra\cyrd\cyrii\cyrishrt\cyrsh\cyrl\cyra{} \cyrd\cyro{}  \cyrr\cyre\cyrd\cyra\cyrk\cyrc\cyrii\cyryi}
+  \renewcommand{\revisedname}{revised}
+  \renewcommand{\acceptedname}{\cyrp\cyrr\cyri\cyrishrt\cyrn\cyrya\cyrt\cyra{} \cyrd\cyro{} \cyrd\cyrr\cyru\cyrk\cyru}	
+}
+
+\addto\captionsrussian{\CaptionsRussian}
+\addto\captionsukrainian{\CaptionsUkrainian}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Proof environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \bfseries
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\newenvironment{proof*}[1][\proofname]{\par
+  \pushQED{}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \bfseries
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\newenvironment{smallproof}[1]
+    {\footnotesize\begin{proof}[#1]}
+    {\end{proof}}
+
+
+
+\usepackage{ifthen}
+
+\newcommand\SET[2]{\def#1{#2}}
+
+\newcommand\DefineLangDepCommand[4]{%
+	\def#1{%
+	\ifthenelse{\equal{\LANGUAGE}{ukrainian}}%
+		{#2}%
+		{%
+			\ifthenelse{\equal{\LANGUAGE}{russian}}%
+				{#3}%
+				{#4}% if language is unrecognized, use english
+		}%
+	}%
+}
+
+\newcommand\RunLangDepCommand[3]{%
+	\ifthenelse{\equal{\LANGUAGE}{ukrainian}}%
+		{#1}% 
+		{%
+			\ifthenelse{\equal{\LANGUAGE}{russian}}%
+				{#2}%
+				{#3}%  if language is unrecognized, use english
+		}%
+}
+
+\DefineLangDepCommand{\chooseCaptions}{\captionsukrainian}{\captionsrussian}{\captionsenglish}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I___  Description of paper structure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Journal, Year, Volume, Number, Pages, Other info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SET{\Journal}{Збірник праць Ін-ту математики НАН України}
+%\SET{\JournalShort}{Proc. Intern. Geom. Center}
+\SET{\JournalShort}{\Journal}
+\SET{\Year}{2020}
+\SET{\Volume}{XX}
+\SET{\Number}{XX}
+\SET{\FirstPage}{XXX}
+\SET{\LastPage}{XXX}
+\SET{\ProtocolNumber}{XXX}
+\SET{\ProtocolDate}{XXX}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Usage:
+%      \title{A new proof of Pythagorean theorem}
+%  or
+%      \title[Pythagorean theorem]{A new proof of Pythagorean theorem}
+%
+%  The optional parameter will appear in the headers of odd pages
+%
+%  All papers are numbered by 1,2,...
+%  To get the title of the paper of a given number run the command
+%      \getTitle{<number>}
+% To get short title run
+%      \getShortTitle{<number>}
+%
+%  Example:  
+%      \getTitle{1}, \getShortTitle{2}, ... 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{titleFlag}
+\def\titleNoOpt #1{\titleWithOpt[#1]{#1}}
+\def\titleWithOpt [#1]#2{%
+   \global\expandafter\edef\csname tocArticleShortTitle\arabic{articlesnum} \endcsname{#1}% 
+   \global\expandafter\edef\csname tocArticleTitle\arabic{articlesnum} \endcsname{#2}% 
+}
+\def\title{\futurelet\testchar\titleDecide}
+\def\titleDecide{\ifx\testchar [ \let\next = \titleWithOpt \else \let\next = \titleNoOpt \fi \next}
+\global\def\getTitle #1{\csname tocArticleTitle#1 \endcsname}
+\global\def\getShortTitle #1{\csname tocArticleShortTitle#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Authors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{authors}  % count list of authors
+
+\def\authorNoOpt #1{\authorWithOpt[#1]{#1}}
+\def\authorWithOpt [#1]#2{%
+            \global\expandafter\edef\csname email-\arabic{articlesnum}-#1 \endcsname{#2}%
+            \setboolean{email-\arabic{articlesnum}-\arabic{authors}}{true}%
+}
+\def\authorWithOpt [#1]#2{%
+     % suppose value{authors} = 1, so we have alerady one author
+     % then we increase this counter by 1, and now we have 2 authors
+     % and 2 is the number of the curent author
+     \stepcounter{authors}%
+     % define current author of the current paper 
+     %  author-5-7 ==> #1,  7th author of 5th paper
+     \global\expandafter\edef\csname author-\arabic{articlesnum}-\arabic{authors} \endcsname{#2}%
+     \global\expandafter\edef\csname author-full-\arabic{articlesnum}-\arabic{authors} \endcsname{#1}%
+     %
+     % define command   \EMAIL2 ==> {\empty}, so \EMAIL2 is defined, but it can be redefined later
+%     \expandafter\def\csname \EMAILPREFIX\arabic{authors} \endcsname{\empty}%
+     % define command   \ADDRESSIDX2 ==> {1},
+     % by default each author is associated to the first address. 
+     % if we have different addresses, then we should use command
+     % \setAuthorAddresIdx{authoridx}{list of addresses idx of that author}
+%     \expandafter\def\csname \ADDRESSIDXPREFIX\arabic{authors} \endcsname{1}%
+     %
+    \newboolean{email-\arabic{articlesnum}-\arabic{authors}}
+    \newboolean{address-\arabic{articlesnum}-\arabic{authors}}
+    \newboolean{department-\arabic{articlesnum}-\arabic{authors}}
+    \newboolean{institute-\arabic{articlesnum}-\arabic{authors}}
+    \newboolean{orcid-\arabic{articlesnum}-\arabic{authors}}
+
+    \setboolean{email-\arabic{articlesnum}-\arabic{authors}}{false}
+    \setboolean{address-\arabic{articlesnum}-\arabic{authors}}{false}
+    \setboolean{department-\arabic{articlesnum}-\arabic{authors}}{false}
+    \setboolean{institute-\arabic{articlesnum}-\arabic{authors}}{false}
+    \setboolean{orcid-\arabic{articlesnum}-\arabic{authors}}{false}
+
+    \global\expandafter\edef\csname email-\arabic{articlesnum}-\arabic{authors} \endcsname{\empty}%
+    \global\expandafter\edef\csname address-\arabic{articlesnum}-\arabic{authors} \endcsname{\empty}%
+    \global\expandafter\edef\csname department-\arabic{articlesnum}-\arabic{authors} \endcsname{\empty}%
+    \global\expandafter\edef\csname institute-\arabic{articlesnum}-\arabic{authors} \endcsname{\empty}%
+    \global\expandafter\edef\csname orcid-\arabic{articlesnum}-\arabic{authors} \endcsname{\empty}%
+}
+
+
+\def\author{\futurelet\testchar\authorDecide}
+\def\authorDecide{\ifx\testchar [ \let\next = \authorWithOpt \else \let\next = \authorNoOpt \fi \next}
+\global\def\getAuthor #1#2{\csname author-#1-#2 \endcsname}
+\global\def\getFullAuthor #1#2{\csname author-full-#1-#2 \endcsname}
+
+
+%\def\setAuthorAddresIdx #1#2{\expandafter\def\csname \ADDRESSIDXPREFIX#1 \endcsname{#2}}
+%\def\getAuthorAddresIdx #1{\csname \ADDRESSIDXPREFIX#1 \endcsname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Short authors list
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newboolean{shortAuthorsList}
+\def\shortAuthorsList #1{
+    \global\expandafter\edef\csname tocArticleAuthorsList\arabic{articlesnum} \endcsname{#1}% 
+}
+\global\def\getTocArticleAuthorsList #1{\csname tocArticleAuthorsList#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Emails
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% if email number is not set, then we use authors
+\def\emailNoOpt #1{\emailWithOpt[\arabic{authors}]{#1}}
+\def\emailWithOpt [#1]#2{%
+            \global\expandafter\edef\csname email-\arabic{articlesnum}-#1 \endcsname{#2}%
+            \setboolean{email-\arabic{articlesnum}-\arabic{authors}}{true}%
+}
+\def\email{\futurelet\testchar\emailDecide}
+\def\emailDecide{\ifx\testchar [ \let\next = \emailWithOpt \else \let\next = \emailNoOpt \fi \next}
+\global\def\getEmail #1#2{\csname email-#1-#2 \endcsname}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Addresses
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\addressNoOpt #1{\addressWithOpt[\arabic{authors}]{#1}}
+\def\addressWithOpt [#1]#2{
+            \global\expandafter\edef\csname address-\arabic{articlesnum}-#1 \endcsname{#2}
+            \setboolean{address-\arabic{articlesnum}-\arabic{authors}}{true}%
+}
+\def\address{\futurelet\testchar\addressDecide}
+\def\addressDecide{\ifx\testchar [ \let\next = \addressWithOpt \else \let\next = \addressNoOpt \fi \next}
+\global\def\getAddress #1#2{\csname address-#1-#2 \endcsname}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Departments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\departmentNoOpt #1{\departmentWithOpt[\arabic{authors}]{#1}}
+\def\departmentWithOpt [#1]#2{
+            \global\expandafter\edef\csname department-\arabic{articlesnum}-#1 \endcsname{#2}
+            \setboolean{department-\arabic{articlesnum}-\arabic{authors}}{true}%
+}
+\def\department{\futurelet\testchar\departmentDecide}
+\def\departmentDecide{\ifx\testchar [ \let\next = \departmentWithOpt \else \let\next = \departmentNoOpt \fi \next}
+\global\def\getDepartment #1#2{\csname department-#1-#2 \endcsname}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Institutes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\instituteNoOpt #1{\instituteWithOpt[\arabic{authors}]{#1}}
+\def\instituteWithOpt [#1]#2{
+            \global\expandafter\edef\csname institute-\arabic{articlesnum}-#1 \endcsname{#2}
+            \setboolean{institute-\arabic{articlesnum}-\arabic{authors}}{true}%
+}
+\def\institute{\futurelet\testchar\instituteDecide}
+\def\instituteDecide{\ifx\testchar [ \let\next = \instituteWithOpt \else \let\next = \instituteNoOpt \fi \next}
+\global\def\getInstitute #1#2{\csname institute-#1-#2 \endcsname}
+
+
+%\newcounter{addresses}  % count list of authors
+%\def\addressNoOpt #1{\stepcounter{addresses}\addressWithOpt[\arabic{addresses}]{#1}}
+%\def\addressWithOpt [#1]#2{\expandafter\def\csname \ADDRESSPREFIX#1 \endcsname{#2}}
+%\def\address{\futurelet\testchar\addressDecide}
+%\def\addressDecide{\ifx\testchar [ \let\next = \addressWithOpt \else \let\next = \addressNoOpt \fi \next}
+%\def\getAddress #1{\csname \ADDRESSPREFIX#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  ORCID
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% if orcid number is not set, then we use authors
+\def\orcidNoOpt #1{\orcidWithOpt[\arabic{authors}]{#1}}
+\def\orcidWithOpt [#1]#2{%
+            \global\expandafter\edef\csname orcid-\arabic{articlesnum}-#1 \endcsname{#2}%
+            \setboolean{orcid-\arabic{articlesnum}-\arabic{authors}}{true}%
+}
+\def\orcid{\futurelet\testchar\orcidDecide}
+\def\orcidDecide{\ifx\testchar [ \let\next = \orcidWithOpt \else \let\next = \orcidNoOpt \fi \next}
+\global\def\getORCID #1#2{\csname orcid-#1-#2 \endcsname}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Thanks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{thanksFlag}
+\def\thanks #1{
+    \global\expandafter\edef\csname thanks-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{thanksFlag}{true} 
+}
+\global\def\getThanks #1{\csname thanks-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Dedication
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{dedicationFlag}
+\def\dedication #1{
+	\global\expandafter\edef\csname dedication-\arabic{articlesnum} \endcsname{#1}% 
+	\setboolean{dedicationFlag}{true} 
+}
+\global\def\getDedication #1{\csname dedication-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Keywords
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{keywordsFlag}
+\def\keywords #1{
+    \global\expandafter\edef\csname keywords-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{keywordsFlag}{true} 
+}
+\global\def\getKeywords #1{\csname keywords-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Keywords Ukrainian
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{keywordsUkrFlag}
+\def\keywordsUkr #1{
+    \global\expandafter\edef\csname keywordsUkr-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{keywordsUkrFlag}{true} 
+}
+\global\def\getKeywordsUkr #1{\csname keywordsUkr-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Universal decimal classification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{udcFlag}
+\def\udc #1{
+    \global\expandafter\edef\csname udc-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{udcFlag}{true} 
+}
+\global\def\getUDC #1{\csname udc-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Mathematics Subject Classification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{mscFlag}
+\def\msc #1{
+    \global\expandafter\edef\csname msc-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{mscFlag}{true} 
+}
+\global\def\getMSC #1{\csname msc-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  DOI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{doiFlag}
+\def\doi #1{
+    \global\expandafter\edef\csname doi-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{doiFlag}{true} 
+}
+\global\def\getDOI #1{\csname doi-#1 \endcsname}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Received, revised, accepted
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{receivedFlag}
+\newboolean{revisedFlag}
+\newboolean{acceptedFlag}
+%%%%%%%%%%%%%%%%
+\def\received #1{
+	\global\expandafter\edef\csname received-\arabic{articlesnum} \endcsname{#1}% 
+	\setboolean{receivedFlag}{true} 
+}
+\global\def\getReceivedDate #1{\csname received-#1 \endcsname}
+%%%%%%%%%%%%%%%%
+\def\revised #1{
+	\global\expandafter\edef\csname revised-\arabic{articlesnum} \endcsname{#1}% 
+	\setboolean{revisedFlag}{true} 
+}
+\global\def\getRevisedDate #1{\csname received-#1 \endcsname}
+%%%%%%%%%%%%%%%%
+\def\accepted #1{
+	\global\expandafter\edef\csname accepted-\arabic{articlesnum} \endcsname{#1}% 
+	\setboolean{acceptedFlag}{true} 
+}
+\global\def\getAcceptedDate #1{\csname accepted-#1 \endcsname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I___  For Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%I______  authors
+\newboolean{bibAuthorsFlag}
+\def\bibAuthors #1{
+    \global\expandafter\edef\csname bibAuthors-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{bibAuthorsFlag}{true} 
+}
+\global\def\getBibAuthors #1{\csname bibAuthors-#1 \endcsname}
+
+
+%I______  english title
+\newboolean{titleEngFlag}
+\def\titleEng #1{
+    \global\expandafter\edef\csname titleEng-\arabic{articlesnum} \endcsname{#1}% 
+    \setboolean{titleEngFlag}{true} 
+}
+\global\def\getTitleEng #1{\csname titleEng-#1 \endcsname}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I___  Printing summary information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  List of authors, emails and addresses
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% print list of authors with their addresses and emails in the footnote
+\newcounter{xxxx}
+%\def\authorsList#1{%
+%\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+%\setcounter{xxxx}{#1}%
+%\ifthenelse{\value{xxxx} > \value{authors}}%
+%   % then  
+%   {}
+%   % else 
+%   {\ifthenelse{\value{xxxx}>1}{, }{}%    put comma after each non-last author
+%    \getAuthor{\thearticlesnum}{\thexxxx}%                 print author
+%    % print address
+%    \ifthenelse{\equal{}{\getAuthorAddresIdx{#1}}}%
+%                 {}%
+%                 {${}^{\getAuthorAddresIdx{\thexxxx}}$}%
+%    % print email in the footnote if it is defined
+%    \ifthenelse{\equal{}{\getEmail{\thearticlesnum}{#1}}}%
+%                 {}%
+%                 {\footnote{\getEmail{\thearticlesnum}{\thexxxx}}}%
+%    \stepcounter{xxxx}%
+%    \authorsList{\thexxxx}%
+%   }
+%\renewcommand*{\thefootnote}{\arabic{footnote}}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% print list of addresses
+%\def\addressesInternalList#1{%
+%\setcounter{xxxx}{#1}%
+%\ifthenelse{\value{xxxx} > \value{addresses}}%
+%   % then  
+%   {}
+%   % else 
+%   {  
+%      \item[${}^{\thexxxx}$] \getAddress{\thexxxx}
+%      \stepcounter{xxxx}
+%      \addressesInternalList{\thexxxx}
+%   }
+%}
+%\def\addressesList{
+%  \begin{enumerate}[leftmargin=*]
+%     \addressesInternalList{1}
+%  \end{enumerate}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\def\authorsListA#1{%
+%\setcounter{xxxx}{#1}%
+%\ifthenelse{\value{xxxx} > \value{authors}}%
+%   % then  
+%   {}
+%   % else 
+%   {\ifthenelse{\value{xxxx}>1}{, }{}%    put comma after each non-last author
+%    \getAuthor{\thearticlesnum}{\thexxxx}%                 print author
+%    % print address
+%    \ifthenelse{\equal{}{\getAuthorAddresIdx{#1}}}%
+%                 {}%
+%                 {${}^{\getAuthorAddresIdx{\thexxxx}}$}%
+%    % print email in the footnote if it is defined
+%    \ifthenelse{\equal{}{\getEmail{\thearticlesnum}{#1}}}%
+%                 {}%
+%                 {\footnote{\getEmail{\thearticlesnum}{\thexxxx}}}%
+%    \stepcounter{xxxx}%
+%    \authorsList{\thexxxx}%
+%   }
+%\renewcommand*{\thefootnote}{\arabic{footnote}}
+%}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%% Abstract
+\newboolean{abstractUKRFlag}
+\newboolean{abstractENGFlag}
+\newboolean{abstractRUSFlag}
+
+\def\abstractwidth{0.85}
+\def\apar{\hspace{11pt}}
+\renewcommand\abstract[2]{%
+  \ifthenelse{\equal{#1}{english}}{\setboolean{abstractENGFlag}{true}}{}%
+  \ifthenelse{\equal{#1}{russian}}{\setboolean{abstractRUSFlag}{true}}{}%
+  \ifthenelse{\equal{#1}{ukrainian}}{\setboolean{abstractUKRFlag}{true}}{}%
+  \expandafter\def\csname abstract-#1 \endcsname{#2}%
+}
+
+%\def\abstractNoOpt #1{%
+%   \RunLangDepCommand{\abstractWithOpt[ukrainian]{#1}}%
+%                     {\abstractWithOpt[russian{#1}}%
+%                     {\abstractWithOpt[english]{#1}}%
+%}
+%\def\abstractWithOpt [#1]#2{%
+%  \ifthenelse{\equal{#1}{english}}{\setboolean{abstractENGFlag}{true}}{}%
+%  \ifthenelse{\equal{#1}{russian}}{\setboolean{abstractRUSFlag}{true}}{}%
+%  \ifthenelse{\equal{#1}{ukrainian}}{\setboolean{abstractUKRFlag}{true}}{}%
+%  \expandafter\def\csname abstract-#1 \endcsname{#2}% {{\selectlanguage{#1}{#2}}}
+%%  \expandafter\def\csname ABSTRACTDEFINED#1 \endcsname{YES}
+%}
+%\def\abstract{\futurelet\testchar\abstractDecide}
+%\def\abstractDecide{\ifx\testchar [ \let\next = \abstractWithOpt \else \let\next = \abstractNoOpt \fi \next}
+\def\getAbstract #1{\csname abstract-#1 \endcsname}
+
+
+
+
+
+
+
+% name of abstract
+\def\abstractnameUKR{\CYRA\cyrn\cyro\cyrt\cyra\cyrc\cyrii\cyrya}
+\def\abstractnameRUS{\CYRA\cyrn\cyrn\cyro\cyrt\cyra\cyrc\cyri\cyrya}
+\def\abstractnameENG{Abstract}
+
+
+%% print list of abstracts
+%\def\printAbstract #1#2{
+%\begin{center}
+%\begin{minipage}[t]{0.8\textwidth}
+%\small
+%\centerline{\bf #1}
+%
+%\smallskip
+%
+%\getAbstract{#2}
+%\end{minipage}
+%\end{center}
+%
+%}
+
+
+% print list of abstracts
+%\def\printAbstract #1#2{
+%\begin{center}
+%\begin{minipage}[c]{\abstractwidth\textwidth}
+%\footnotesize
+%\textbf{#1.} \getAbstract{#2}
+%\end{minipage}
+%
+%\medskip
+%
+%\end{center}
+%}
+\def\printAbstract #1#2{
+\begin{center}
+\begin{trivlist}\leftskip=1cm\rightskip=1cm
+\selectlanguage{#2}
+\footnotesize
+\textbf{#1.} \getAbstract{#2}
+\end{trivlist}
+
+\medskip
+
+\end{center}
+}
+
+
+
+\def\printAbstracts{%
+ \ifthenelse{\boolean{abstractENGFlag}}{\printAbstract{\abstractnameENG}{english}}{}%
+ \ifthenelse{\boolean{abstractUKRFlag}}{\printAbstract{\abstractnameUKR}{ukrainian}}{}%
+ \ifthenelse{\boolean{abstractRUSFlag}}{\printAbstract{\abstractnameRUS}{russian}}{}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Table of contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\printContentsLine[1]{
+\bigskip \noindent
+\parbox[b][\height][b]{0.89\textwidth}
+{\raggedright{\bf \getTitle{#1}} \hfill \pageref{first_page:#1}--\pageref{last_page:#1} \\
+\getTocArticleAuthorsList{#1} }  \par
+}
+
+
+\def\printList#1#2#3{%
+\setcounter{xxxx}{#1}%
+\ifthenelse{\NOT\( \value{xxxx} > \value{#2}\)}%
+   % then                   
+   {
+    \csname #3\endcsname{\thexxxx}%
+    \stepcounter{xxxx}%
+    \printList{\thexxxx}{#2}{#3}%
+   }
+   % else 
+   {}%
+}
+
+\def\printContents{\setcounter{xxxx}{1}\printList{1}{articlesnum}{printContentsLine}} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand\printContentsLineA[1]{
+\begin{flushleft}
+\noindent{\bfseries \getTitle{#1}} \\ 
+\par\noindent\getTocArticleAuthorsList{#1}
+\end{flushleft} & &
+\begin{flushleft}
+\pageref{first_page:#1}--\pageref{last_page:#1} 
+\end{flushleft} \\
+}
+
+\def\printContentsA{
+\setcounter{xxxx}{1}
+\begin{center}
+\begin{tabular}{p{0.8\textwidth}p{0.1\textwidth}p{0.1\textwidth}}
+\printList{1}{articlesnum}{printContentsLineA}
+\end{tabular}
+\end{center}
+}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Authors list at the title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\printListForCurrentArticle#1#2#3#4#5{%
+\setcounter{xxxx}{#1}%
+\ifthenelse{\NOT\( \value{xxxx} > \value{#3}\)}%
+   % then                   
+   {%
+    \ifthenelse{\value{xxxx}>1}{#5}{}%
+    \csname #4\endcsname{#2}{\thexxxx}%
+    \stepcounter{xxxx}%
+    \printListForCurrentArticle{\thexxxx}{#2}{#3}{#4}{#5}%
+   }
+   % else 
+   {}%
+}
+
+%%%%%%%%%%%% list of authors
+\def\printArticleAuthors #1{\printListForCurrentArticle{1}{#1}{authors}{getAuthor}{, }} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Author info at the end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% information about author
+\def\printAuthorInfo #1#2{ 
+   \par\noindent{\getFullAuthor{#1}{#2}}
+   \ifthenelse{\boolean{department-#1-#2}}{\par\noindent{\sc\footnotesize\getDepartment{#1}{#2}}}{}
+   \ifthenelse{\boolean{institute-#1-#2}}{\par\noindent{\sc\footnotesize\getInstitute{#1}{#2}}}{}
+   \ifthenelse{\boolean{address-#1-#2}}{\par\noindent{\sc\footnotesize\getAddress{#1}{#2}}}{}
+   \ifthenelse{\boolean{email-#1-#2}}
+          {\par\noindent{\footnotesize \textit{Email:}
+                            \href{mailto:\getEmail{#1}{#2}}
+                                 {\texttt{\getEmail{#1}{#2}}}
+                }
+          }
+          {}
+   \ifthenelse{\boolean{orcid-#1-#2}}
+          {\par\noindent{\footnotesize \textit{ORCID:} 
+                            \href{http://orcid.org/\getORCID{#1}{#2}}
+                                 {\texttt{orcid.org/\getORCID{#1}{#2}}}
+                        }
+          }
+          {}
+%
+%   \ifthenelse{\equal{\getAddress{#1}{#2}}{}}{}{\par\noindent{\sc\footnotesize\getAddress{#1}{#2}}}
+%   \ifthenelse{\equal{\getEmail{#1}{#2}}{}}{}{\par\noindent{\footnotesize \textit{Email:} \texttt{\getEmail{#1}{#2}}}}
+%   \ifthenelse{\equal{\getORCID{#1}{#2}}{}}{}{\par\noindent{\footnotesize \textit{ORCID:} \texttt{orcit.org/\getORCID{#1}{#2}}}}
+   \par
+   \bigskip
+}
+
+\def\printArticleAuthorsInfo #1{%
+
+    % \bigskip
+    \bigskip
+
+    \printListForCurrentArticle{1}{#1}{authors}{printAuthorInfo}{\medskip}
+
+    \bigskip
+} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%I______  Received, revised, accepted
+\def\printReceivedAccepted #1{%
+\ifthenelse{\boolean{receivedFlag}}
+{
+	\par
+	\medskip
+	\small \noindent\textit{\receivedname\ \getReceivedDate{#1}, \acceptedname\ \getAcceptedDate{#1}.}
+}
+{}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% footnote without number
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Print final info of the paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  Initialize all counters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\CLEANALL{
+%\clearpage
+\setcounter{authors}{0}
+%\setcounter{addresses}{0}
+\setcounter{footnote}{0}
+\refstepcounter{part}
+%\stepcounter{chapter}
+\setcounter{section}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}
+%%%%%%
+\setboolean{titleFlag}{false}
+\setboolean{keywordsFlag}{false}
+\setboolean{keywordsUkrFlag}{false}
+\setboolean{thanksFlag}{false}
+\setboolean{udcFlag}{false}
+\setboolean{mscFlag}{false}
+\setboolean{abstractENGFlag}{false}
+\setboolean{abstractUKRFlag}{false}
+\setboolean{abstractRUSFlag}{false}
+\setboolean{receivedFlag}{false}
+\setboolean{revisedFlag}{false}
+\setboolean{acceptedFlag}{false}
+\setboolean{doiFlag}{false}
+
+%%%%%%
+\setboolean{bibAuthorsFlag}{false}
+\setboolean{titleEngFlag}{false}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I______  MAKETITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\maketitle{
+%%%%% directives 
+\RunLangDepCommand{\selectlanguage{ukrainian}}{\selectlanguage{russian}}{\selectlanguage{english}}
+\chooseCaptions
+% \addcontentsline{toc}{section}{**********************}
+% \addcontentsline{toc}{section}{** \getTocArticleAuthorsList{\thearticlesnum}}
+% \addcontentsline{toc}{section}{** \getTitle{\thearticlesnum}}
+%\addcontentsline{toc}{section}{** \pageref{first_page:\thearticlesnum}--\pageref{last_page:\thearticlesnum} }
+%\addcontentsline{toc}{section}{** (\Year) Vol. \Volume, no. \Number, \pageref{first_page:\thearticlesnum}--\pageref{last_page:\thearticlesnum} }
+%\addcontentsline{toc}{section}{**}
+
+\thispagestyle{myfirstpage}
+\pagestyle{myplain}
+% print paper info
+%\noindent\Journal~$\bullet$~\Volume (\Number)~$\bullet$~\Year~$\bullet$%
+%~\pageref{first_page:\arabic{articlesnum}}--\pageref{last_page:\arabic{articlesnum}}
+%\hfill \Journal 
+%
+%\hfill Vol.~\Volume, no.~\Number (\Year) pp.~\pageref{first_page:\arabic{articlesnum}}--\pageref{last_page:\arabic{articlesnum}}
+\noindent {\rm\footnotesize \selectlanguage{ukrainian}\JournalShort \hfill (\Year) т.~\Volume, №~\Number, \pageref{first_page:\expandafter\arabic{articlesnum}}--\pageref{last_page:\expandafter\arabic{articlesnum}}}
+
+\bigskip
+\bigskip
+%%%%%%% Print Thanks
+\ifthenelse{\boolean{thanksFlag}}%
+           {\noindent\blfootnote{\getThanks{\thearticlesnum}}}%
+           {}%
+%%%%%%% Print MSC
+\ifthenelse{\boolean{mscFlag}}%
+           {\noindent\blfootnote{\textit{2010 Mathematics Subject Classification}: \getMSC{\thearticlesnum}}}%
+           {}%
+%%%%%%% Print UDC
+\ifthenelse{\boolean{udcFlag}}%
+           {\noindent\blfootnote{\textit{\udcname}~\getUDC{\thearticlesnum}}}%
+           {}%
+%%%%%%% Print keywords
+\ifthenelse{\boolean{keywordsFlag}}%
+           {\noindent\blfootnote{\textit{\keywordsname}: \getKeywords{\thearticlesnum}}}%
+           {}%
+% %%%%%%% Print keywords in Ukrainian
+\ifthenelse{\NOT\equal{\LANGUAGE}{ukrainian}}%
+           {%
+              \ifthenelse{\boolean{keywordsUkrFlag}}%
+                        {\noindent\blfootnote{\textit{\keywordsnameUkr}: \getKeywordsUkr{\thearticlesnum}}}%
+                        {}%
+           }{}%
+%%%%%%%% Print DOI
+\ifthenelse{\boolean{doiFlag}}%
+           {\noindent\blfootnote{%
+                 \textit{DOI}:
+                 \href{http://dx.doi.org/\getDOI{\thearticlesnum}}{http://dx.doi.org/\getDOI{\thearticlesnum}}
+              }
+           }%
+           {\phantom{\textit{DOI}}}%
+%%%%%%% Print DEDICATION
+\ifthenelse{\boolean{dedicationFlag}}%
+{\smallskip\begin{center}\it\getDedication{\thearticlesnum}\end{center}\smallskip}%
+{\bigskip}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+{\LARGE\bf\getTitle{\thearticlesnum}} \\       % print title
+
+\bigskip 
+\medskip 
+
+{\large \printArticleAuthors{\thearticlesnum}} % print authors
+
+\bigskip
+\bigskip
+
+% print abstract
+\printAbstracts
+
+\end{center}
+
+\bigskip
+
+
+%\begin{center}\it\getDedication{\thearticlesnum}\end{center}
+%\ifthenelse{\boolean{dedicationFlag}}{\begin{center}\it\getDedication{\thearticlesnum}\end{center}}{}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -------- begin myemph --------------------
+\makeatletter
+\newcommand\testshape{family=\f@family; series=\f@series; shape=\f@shape.}
+\def\myemphInternal#1{\if n\f@shape%
+\begingroup\itshape #1\endgroup\/%
+\else\begingroup\sffamily\small #1\endgroup%
+\fi}
+\def\myemph{\futurelet\testchar\MaybeOptArgmyemph}
+\def\MaybeOptArgmyemph{\ifx[\testchar \let\next\OptArgmyemph
+                 \else \let\next\NoOptArgmyemph \fi \next}
+\def\OptArgmyemph[#1]#2{\index{#1}\myemphInternal{#2}}
+\def\NoOptArgmyemph#1{\myemphInternal{#1}}
+\makeatother
+% -------- end myemph --------------------
+
+
+
+
+\usepackage{bibunits}
+\usepackage{hyperref}
+\hypersetup{
+	hypertexnames=false,
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I____  Adopt hyperref with bibunits
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\hyper@natlinkstart#1{%
+  \Hy@backout{#1}%
+  \hyper@linkstart{cite}{cite.\@bibunitname.#1}%
+%                             ^^^^^^^^^^^^^^
+  \def\hyper@nat@current{#1}%
+}
+
+\def\hyper@natlinkbreak#1#2{%
+  \hyper@linkend#1\hyper@linkstart{cite}{cite.\@bibunitname.#2}%
+%                                             ^^^^^^^^^^^^^^
+}
+
+\def\hyper@natanchorstart#1{%
+  \hyper@anchorstart{cite.\@bibunitname.#1}%
+%                         ^^^^^^^^^^^^^^
+}
+
+\def\bibcite#1#2{%
+  \@newl@bel{b}{#1}{\hyper@@link[cite]{}{cite.\@bibunitname.#1}{#2}}%
+%                                             ^^^^^^^^^^^^^^
+}%
+
+\def\@lbibitem[#1]#2{%
+  \@skiphyperreftrue
+  \H@item[\hyper@anchorstart{cite.\@bibunitname.#2}%
+%                                 ^^^^^^^^^^^^^^
+  \@BIBLABEL{#1}\hyper@anchorend\hfill]%
+  \@skiphyperreffalse
+  \if@filesw
+    \begingroup
+      \let\protect\noexpand
+      \immediate\write\@auxout{%
+        \string\bibcite{#2}{#1}%
+      }%
+    \endgroup
+  \fi
+  \ignorespaces
+}%
+
+\def\@bibitem#1{%
+  \@skiphyperreftrue\H@item\@skiphyperreffalse
+  \hyper@anchorstart{cite.\@bibunitname.#1}\relax\hyper@anchorend
+%                         ^^^^^^^^^^^^^^
+  \if@filesw
+    \begingroup
+      \let\protect\noexpand
+      \immediate\write\@auxout{%
+        \string\bibcite{#1}{\the\value{\@listctr}}%
+      }%
+    \endgroup
+  \fi
+  \ignorespaces
+}%
+
+\def\@citex[#1]#2{%
+  \let\@citea\@empty
+  \@cite{%
+    \@for\@citeb:=#2\do{%
+      \@citea
+      \def\@citea{,\penalty\@m\ }%
+      \edef\@citeb{\expandafter\@firstofone\@citeb}%
+      \if@filesw
+        \immediate\write\@auxout{\string\citation{\@citeb}}%
+      \fi
+      \@ifundefined{b@\@citeb}{%
+        \mbox{\reset@font\bfseries ?}%
+        \G@refundefinedtrue
+        \@latex@warning{%
+          Citation `\@citeb' on page \thepage \space undefined%
+        }%
+      }{%
+        \hyper@natlinkstart{#2}%
+%       ^^^^^^^^^^^^^^^^^^^^^^^^
+            \hbox{\csname b@\@citeb\endcsname}%
+        \hyper@natlinkend%
+%       ^^^^^^^^^^^^^^^^^^
+      }%
+    }%
+  }{#1}%
+}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newlength\aaaa
+\newlength\bbbb
+
+\newcommand\xx[2]{\text{$\overset{#1}{#2}$}}
+\newcommand\xxu[3]{%
+     \settowidth\aaaa{\widthof{$#3$}}%
+     \setlength\bbbb{0.5\aaaa}%
+     \xx{\hspace{-\the\bbbb}#1}{{#2}^{#3}}}
+
+\newcommand\xxd[3]{\xx{#1}{#2}_{#3}}
+
+\newcommand\xxud[4]{%
+     \settowidth\aaaa{\widthof{$#3$}}%
+     \setlength\bbbb{0.5\aaaa}%
+     \xx{\hspace{-\the\bbbb}#1}{{#2}^{#3}_{#4}}}
+
