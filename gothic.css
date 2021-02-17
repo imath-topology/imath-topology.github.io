@@ -193,7 +193,7 @@ html {
 
 body {
 	max-width: 914px;
-	text-align: justify;
+	/* text-align: justify; */
 }
 
 body>h1:first-child {
