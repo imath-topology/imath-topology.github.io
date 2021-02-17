@@ -5,7 +5,7 @@
 - [Визначення, леми, теореми](./courses/pl_topology.html)
 - Відео: [Youtube channel](https://www.youtube.com/playlist?list=PLmHyZ3t74Vpx2PlNQnleAqaqVGabXGWfZ)
 - Лекція 1. Симплекси [video](https://www.youtube.com/watch?v=hCzaDl4bOkA)
-  - Лінійно незалежні системи точок в R^n
+  - Лінійно незалежні системи точок в $\mathbb{R}^n$
   - Симплекси
   - Барицентричні координати
 - Лекція 2. Поліедри [video](https://www.youtube.com/watch?v=Plqci0HNgvo)
