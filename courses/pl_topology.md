@@ -16,9 +16,9 @@
 - $A$ ЛНЗ $\Leftrightarrow$ $B$ ЛНЗ
 - Нехай $L$ – перетин всіх $(n-1)$-площин в $\mathbb{R}^{n}$, які містять $A$. Тоді $A$ ЛНЗ  $\Leftrightarrow$ $dimL=K$
 
-**Def. Симплекс**. Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\}$ – ЛНЗ система в $\mathbb{R}^{n}$. Тоді $\bar{A}=\left\{\alpha_{0}x_{0}+\alpha_{1}x_{1}+\ldots+ \alpha_{k}x_{k}\right\}$ називається **симплексом, породженим $A$**.
+**Def. Симплекс**. Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\}$ – ЛНЗ система в $\mathbb{R}^{n}$. Тоді $\bar{A}=\left\{\alpha_{0}x_{0}+\alpha_{1}x_{1}+\ldots+ \alpha_{k}x_{k}\mid\alpha_{i}\geq0, \sum \alpha_{i}=1\right\}$ називається **симплексом, породженим $A$**.
 
-
+**Def.** Для точки виду $x=\alpha_{0}x_{0}+\alpha_{1}x_{1}$, набір $\alpha_{0},\alpha_{1}$ називається її **барицентричними координатами**.
 
 ##  Лекція 2. Симплекс
 2021-01-12. [Відео](https://www.youtube.com/watch?v=Plqci0HNgvo) [Конспект](./pl_topology/lecture_2.pdf)
