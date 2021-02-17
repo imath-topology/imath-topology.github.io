@@ -53,4 +53,5 @@
 
 **Def. Регулярний окіл поліедра** TODO
 
-**Def. ** $K$ – поліедр з триангуляцією $q$, $K = \cup_{i \in \Lambda}A_i$. Тоді $\forall L=\cup_{i \in V \subset \Lambda} A_i$ – поліедр.
+**Def. ** $K$ – поліедр з триангуляцією $q$, $K = \cup_{i \in \Lambda}A_i$. Тоді $\forall L=\cup_{i \in V \subset \Lambda} A_i$ – **підполіедр**.
+
