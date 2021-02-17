@@ -20,6 +20,11 @@
 
 **Def.** Для точки виду $x=\alpha_{0}x_{0}+\alpha_{1}x_{1}$, набір $\alpha_{0},\alpha_{1}$ називається її **барицентричними координатами**.
 
+**Лема**. Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\}$ – система точок в $\mathbb{R}^{n}$, $\bar{A}=\left\{\alpha_{0}x_{0}+\alpha_{1}x_{1}+\ldots+ \alpha_{k}x_{k}\mid\alpha_{i}\geq0, \sum \alpha_{i}=1\right\}$. Тоді наступні умови еквівалентні:
+
+- $A$ – ЛНЗ
+- $\forall x \in \bar{A}$ представлення $x=\sum_{i=0}^{k}\alpha_i x_i$ – єдине ($\exists !$ набір таких $\alpha$ )
+
 ##  Лекція 2. Симплекс
 2021-01-12. [Відео](https://www.youtube.com/watch?v=Plqci0HNgvo) [Конспект](./pl_topology/lecture_2.pdf)
 
