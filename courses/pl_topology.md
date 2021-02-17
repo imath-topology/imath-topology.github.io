@@ -1,30 +1,32 @@
 # Кусково-Лінійна Топологія (січень 2021)
 
 ## Лекція 1. Симплекси і поліедри
-- 2021-01-05.
-[Відео 1](https://youtube.com/watch?v=L0VvA4gL5Es),
-[Відео 2](https://www.youtube.com/watch?v=hCzaDl4bOkA),
-[Конспект](./pl_topology/lecture_1.pdf)
+2021-01-05. [Відео 1](https://youtube.com/watch?v=L0VvA4gL5Es), [Відео 2](https://www.youtube.com/watch?v=hCzaDl4bOkA), [Конспект](./pl_topology/lecture_1.pdf)
 
-- **Def. Лінійно-незалежні вектори**.
+**Def. Лінійно-незалежні вектори**.
 Вектори $a_{0}, a_{1}, \ldots, a_{k} \in \mathbb{R}^n$ є **лінійно залежними**, якщо існують такі числа $\alpha_{1}, \alpha_{2}, \ldots, \alpha_{k} \neq 0$, що $\alpha_{1}a_{1}+\alpha_{2}a_{2}+\ldots+\alpha_{k} a_{k}=0$.
 У зворотньому випадку вони є **лінійно незалежними**
 
-- **Def. Лінійно-незалежна система точок в $\mathbb{R}^{n}$**.
+**Def. Лінійно-незалежна система точок в $\mathbb{R}^{n}$**.
 Скінченна множина точок $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$ називається **ЛНЗ** системою точок, якщо вектори $x_{1} - x_{0}$, $x_{2} - x_{0}$, $x_{3} - x_{0}$, $\ldots$, $x_{k} - x_{0}$ - лінійно незалежні.
 
-- **Лема**. 
-Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$.
+**Лема**. Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\} \subset \mathbb{R}^{n}$.
 Нехай $B$ - перестановка точок в $A$ , де $B = \left\{x_{1}, x_{0}, x_{2}, \ldots, x_{k}\right\}$. Тоді:
-  - $A$ ЛНЗ $\Leftrightarrow$ $B$ ЛНЗ
-  - Нехай $L$ – перетин всіх $(n-1)$-площин в $\mathbb{R}^{n}$, які містять $A$. Тоді $A$ ЛНЗ  $\Leftrightarrow$ $dimL=K$
-- 
+
+- $A$ ЛНЗ $\Leftrightarrow$ $B$ ЛНЗ
+- Нехай $L$ – перетин всіх $(n-1)$-площин в $\mathbb{R}^{n}$, які містять $A$. Тоді $A$ ЛНЗ  $\Leftrightarrow$ $dimL=K$
+
+**Def. Симплекс**. Нехай $A=\left\{x_{0}, x_{1}, \ldots, x_{k}\right\}$ – ЛНЗ система в $\mathbb{R}^{n}$. Тоді $\bar{A}=\left\{\alpha_{0}x_{0}+\alpha_{1}x_{1}+\ldots+ \alpha_{k}x_{k}\right\}$ називається **симплексом, породженим $A$**.
+
+
 
 ##  Лекція 2. Симплекс
-- 2021-01-12.
-[Відео](https://www.youtube.com/watch?v=Plqci0HNgvo)
-[Конспект](./pl_topology/lecture_2.pdf)
-- **Def. Правильно розміщені симплекси**. Нехай $\bar{A}$, $\bar{B}$ $\subset \mathbb{R}^{n}$ – два симплекси. Тоді вони є **правильно розміщеними**, якщо:
-  - або $\bar{A} \cap \bar{B}=\varnothing$
-  - або $\bar{A} \cap \bar{B}$ – спільна грань
-- **Def. Поліедр**. Поліедр $K$ в $\mathbb{R}^{n}$ – це об'єднання скінченого числа симплексів $A_{1}, \ldots, A_{l}$, таких що $\forall A_{i} A_{j}$ є правильно розміщеними
+2021-01-12. [Відео](https://www.youtube.com/watch?v=Plqci0HNgvo) [Конспект](./pl_topology/lecture_2.pdf)
+
+**Def. Правильно розміщені симплекси**. Нехай $\bar{A}$, $\bar{B}$ $\subset \mathbb{R}^{n}$ – два симплекси. Тоді вони є **правильно розміщеними**, якщо:
+
+- або $\bar{A} \cap \bar{B}=\varnothing$
+- або $\bar{A} \cap \bar{B}$ – спільна грань
+
+**Def. Поліедр**. Поліедр $K$ в $\mathbb{R}^{n}$ – це об'єднання скінченого числа симплексів $A_{1}, \ldots, A_{l}$, таких що $\forall A_{i} A_{j}$ є правильно розміщеними
+
