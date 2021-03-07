@@ -13,3 +13,4 @@
   - Поліедри
   - Барицентричні підрозбиття
   - Регулярні околи підполіедрів
+- Лекція 3. Симпліціальні комплекси [video](https://www.youtube.com/watch?v=jDfSKXvFMUs&list=PLmHyZ3t74Vpx2PlNQnleAqaqVGabXGWfZ&index=4)
