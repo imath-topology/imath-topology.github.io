@@ -14,3 +14,11 @@
   - Барицентричні підрозбиття
   - Регулярні околи підполіедрів
 - Лекція 3. Симпліціальні комплекси [video](https://www.youtube.com/watch?v=jDfSKXvFMUs&list=PLmHyZ3t74Vpx2PlNQnleAqaqVGabXGWfZ&index=4)
+
+- Лекція 4. Симпліціальні відображення [video](https://www.youtube.com/watch?v=k8btvMiktB8)
+
+- Лекція 5. Симпліціальні апроксимації [video](https://www.youtube.com/watch?v=8krrZLCpN4Q)
+
+- Лекція 6. Ланцюгові комплекси [video](https://www.youtube.com/watch?v=ByIWNfjSXtc)
+
+- Лекція 7. Гомології ланцюгових комплексів [video](https://www.youtube.com/watch?v=s4opNQB9h6s)
