@@ -4,7 +4,7 @@
 
 <div style="display:flex;justify-content:center;flex-wrap:wrap;"><img src="./static/gt01.jpeg" alt="gt01" style="height:150px;" /><img src="./static/gt02.jpeg" alt="gt02" style="height:150px;" /><img src="./static/gt03.jpeg" alt="gt03" style="height:150px;" /></div>
 
-- Початок: 30 квітня. Бажаючі приєднатись – пишіть на k-bx@k-bx.com для отримання запрошення в Telegram-групу а також посилання на Zoom-трансляцію
+- Лектор: Сергій Максименко. Початок: 30 квітня. Бажаючі приєднатись – пишіть на k-bx@k-bx.com для отримання запрошення в Telegram-групу а також посилання на Zoom-трансляцію.
 - План лекцій:
   - 30 Apr. Поняття групи. Групи симетрій.
   - 7 May. Підгрупа. Нормальна підгрупа. 
