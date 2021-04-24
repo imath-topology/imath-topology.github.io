@@ -2,7 +2,7 @@
 
 ## Теорія груп (Apr 2021)
 
-<div align=center><img src="/Users/kb/workspace/imath-topology.github.io/static/gt01.jpeg" alt="gt01" style="height:150px;" /><img src="/Users/kb/workspace/imath-topology.github.io/static/gt02.jpeg" alt="gt02" style="height:150px;" /><img src="/Users/kb/workspace/imath-topology.github.io/static/gt03.jpeg" alt="gt03" style="height:150px;" /></div>
+<div align=center><img src="./static/gt01.jpeg" alt="gt01" style="height:150px;" /><img src="./static/gt02.jpeg" alt="gt02" style="height:150px;" /><img src="./static/gt03.jpeg" alt="gt03" style="height:150px;" /></div>
 
 - Початок: 30 квітня. Бажаючі приєднатись – пишіть на k-bx@k-bx.com для отримання запрошення в Telegram-групу а також посилання на Zoom-трансляцію
 - План лекцій:
