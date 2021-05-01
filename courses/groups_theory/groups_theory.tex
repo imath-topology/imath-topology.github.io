@@ -1,0 +1,81 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = uk_UA
+
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[ukrainian]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amsfonts,amssymb,amsmath,amsthm}
+\usepackage[all]{xy}
+
+\usepackage[unicode]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\newcommand\bZ{\mathbb{Z}}
+\newcommand\bR{\mathbb{R}}
+\newcommand\bN{\mathbb{N}}
+
+% %\usepackage{makeidx}
+% \usepackage{imakeidx}
+% \makeindex[program=texindy,options=-M mystyle.xdy]
+% %\makeindex
+
+\newtheorem{definition}[subsection]{Означення}
+\newtheorem{zad-def}[subsection]{\color{RoyalPurple}Задача-означення}
+\newtheorem{zadacha}[subsection]{\color{RoyalPurple}Задача}
+\newcommand\zad[1]{\begin{zadacha}\rm#1\end{zadacha}}
+\newcommand\zadl[2]{\begin{zadacha}\label{#1}\rm#2\end{zadacha}}
+\newcommand\zaddef[1]{\begin{zad-def}\rm#1\end{zad-def}}
+\newcommand\zaddefl[2]{\begin{zad-def}\label{#1}\rm#2\end{zad-def}}
+
+\newcommand\dyv[1]{Див. також задачі #1.}
+
+% -------- begin myemph --------------------
+\makeatletter
+\newcommand\testshape{family=\f@family; series=\f@series; shape=\f@shape.}
+\def\myemphInternal#1{\if n\f@shape%
+\begingroup\itshape #1\endgroup\/%
+\else\begingroup\bfseries #1\endgroup%
+\fi}
+\def\myemph{\futurelet\testchar\MaybeOptArgmyemph}
+\def\MaybeOptArgmyemph{\ifx[\testchar \let\next\OptArgmyemph
+                 \else \let\next\NoOptArgmyemph \fi \next}
+\def\OptArgmyemph[#1]#2{\index{#1}\myemphInternal{#2}}
+\def\NoOptArgmyemph#1{\myemphInternal{#1}}
+\makeatother
+% -------- end myemph --------------------
+\newcommand\toindex[1]{\myemph[#1]{~\!\!}}
+
+
+\newcommand\bemph[1]{{\it\bfseries#1}}
+
+\newcommand\id{\mathrm{id}}          % identity map    
+\newcommand\cl[1]{\overline{#1}}     % closure
+\newcommand\CL{\mathrm{cl}}          % Kuratowski operator
+\newcommand\Int[1]{\mathrm{Int}\left(#1\right)}     % closure
+\newcommand\Ext[1]{\mathrm{Ext}\left(#1\right)}     % closure
+\newcommand\Fr[1]{\mathrm{Fr}\left(#1\right)}     % closure
+
+
+\title{Вступ в теорію груп}
+\author{Сергій Максименко}
+\begin{document}
+\maketitle
+% \tableofcontents
+
+\input{problems.tex}
+
+
+\end{document}
